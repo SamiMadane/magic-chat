@@ -5,9 +5,9 @@ import 'core/routes/app_router.dart';
 import 'core/routes/routes.dart';
 
 
-class NameApp extends StatelessWidget {
+class MagicChat extends StatelessWidget {
   final AppRouter appRouter;
-  const NameApp({super.key, required this.appRouter});
+  const MagicChat({super.key, required this.appRouter});
 
   @override
   Widget build(BuildContext context) {

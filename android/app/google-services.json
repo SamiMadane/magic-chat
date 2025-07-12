@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "722021439815",
+    "project_id": "magicchat-6ada6",
+    "storage_bucket": "magicchat-6ada6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722021439815:android:3ea0b592db0bf335d79462",
+        "android_client_info": {
+          "package_name": "com.example.magic_chat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJU3yMf5aYFmTwXex3lWgdvQEMbskHjBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
