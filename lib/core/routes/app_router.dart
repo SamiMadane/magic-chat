@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:magicchat/core/routes/routes.dart';
 
 
 
@@ -9,14 +10,14 @@ class AppRouter {
     //this arguments to be passed in any screen like this ( arguments as ClassName )
     final arguments = settings.arguments;
 
-    switch (settings.name) {
-      // case Routes.onBoardingScreen:
-      //   return MaterialPageRoute(
-      //     builder: (_) => const onBoardingScreen(),
-      //   );
+    // switch (settings.name) {
+    //   case Routes.onBoardingScreen:
+    //     return MaterialPageRoute(
+    //       // builder: (_) => const OnboardingScreen(),
+    //     );
      
-      default:
-        return null;
-    }
+      // default:
+    //   //   return null;
+    // }
   }
 }
