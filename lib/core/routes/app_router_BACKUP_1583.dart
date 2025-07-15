@@ -6,7 +6,6 @@ import 'package:magicchat/core/routes/routes.dart';
 
 
 
-
 class AppRouter {
   Route? generateRoute(RouteSettings settings) {
     //this arguments to be passed in any screen like this ( arguments as ClassName )
@@ -17,6 +16,7 @@ class AppRouter {
     //     return MaterialPageRoute(
     //       // builder: (_) => const OnboardingScreen(),
     //     );
+
       // default:
     //   //   return null;
     // }
