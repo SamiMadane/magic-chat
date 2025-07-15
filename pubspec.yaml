@@ -131,37 +131,37 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  fonts:
+  # fonts:
     
-    - family: Tajawal
-      fonts:
-        - asset: assets/fonts/Tajawal-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Tajawal-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Tajawal-Bold.ttf
-          weight: 700
+  #   - family: Tajawal
+  #     fonts:
+  #       - asset: assets/fonts/Tajawal-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/Tajawal-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Tajawal-Bold.ttf
+  #         weight: 700
 
-    - family: Roboto
-      fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Roboto-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Roboto-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Roboto-Bold.ttf
-          weight: 700
-    - family: Poppins
-      fonts:
-        - asset: assets/fonts/Poppins-Regular.ttf
-          weight: 400
-        - asset: assets/fonts/Poppins-Medium.ttf
-          weight: 500
-        - asset: assets/fonts/Poppins-SemiBold.ttf
-          weight: 600
-        - asset: assets/fonts/Poppins-Bold.ttf
-          weight: 700
+  #   - family: Roboto
+  #     fonts:
+  #       - asset: assets/fonts/Roboto-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/Roboto-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Roboto-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Roboto-Bold.ttf
+  #         weight: 700
+  #   - family: Poppins
+  #     fonts:
+  #       - asset: assets/fonts/Poppins-Regular.ttf
+  #         weight: 400
+  #       - asset: assets/fonts/Poppins-Medium.ttf
+  #         weight: 500
+  #       - asset: assets/fonts/Poppins-SemiBold.ttf
+  #         weight: 600
+  #       - asset: assets/fonts/Poppins-Bold.ttf
+  #         weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
