@@ -4,7 +4,11 @@ flutter_native_splash:
   image: assets/images/splash_screen.png
   android: true
   ios: true
+  color_dark: "#222222"              
+  image_dark: assets/images/splash_screen_dark.png  
 
   android_12:
     image: assets/images/splash_screen.png
     color: "#ffffff"
+    image_dark: assets/images/splash_screen_dark.png
+    color_dark: "#222222"

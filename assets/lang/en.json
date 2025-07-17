@@ -1,0 +1,16 @@
+{
+  "onboarding": {
+    "chat_friends": {
+      "title": "Chat with Friends",
+      "subtitle": "Stay close to the people that matter. Enjoy fast and secure messaging."
+    },
+    "chat_ai": {
+      "title": "Smart Conversations",
+      "subtitle": "Discover ideas, ask questions, and explore your thoughts with AI."
+    },
+    "chat_offline": {
+      "title": "Talk Offline",
+      "subtitle": "Enjoy chatting even without an internet connection — anytime, anywhere."
+    }
+  }
+}
