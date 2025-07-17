@@ -1,20 +1,22 @@
-// import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:magicchat/core/resourses/assets_manager.dart';
+import 'package:magicchat/features/onboarding/data/models/onboarding_model.dart';
 
 
-//  List<OnboardingModel> onboardingPages = [
-//   OnboardingModel(
-//     title: 'Welcome to LeukoAI'.tr(),
-//     subtitle: 'An intelligent assistant for early leukemia detection & smart patient care.'.tr(),
-//     imagePath: AssetsManager.onboarding1Image,
-//   ),
-//   OnboardingModel(
-//     title: 'AI-Powered Diagnosis'.tr(),
-//     subtitle: 'Upload blood samples and let AI help in fast, accurate analysis.'.tr(),
-//     imagePath: AssetsManager.onboarding2Image,
-//   ),
-//   OnboardingModel(
-//     title: 'Tailored for Everyone'.tr(),
-//     subtitle: 'Tailored experience for every role — manage, diagnose, and track with ease.'.tr(),
-//     imagePath: AssetsManager.onboarding3Image,
-//   ),
-// ];
+ List<OnboardingModel> onboardingPages = [
+  OnboardingModel(
+    title: 'onboarding.chat_friends.title'.tr(),
+    subtitle: 'onboarding.chat_friends.subtitle.'.tr(),
+    imagePath: AssetsManager.onboarding1Image,
+  ),
+  OnboardingModel(
+    title: 'onboarding.chat_ai.title'.tr(),
+    subtitle: 'onboarding.chat_ai.subtitle'.tr(),
+    imagePath: AssetsManager.onboarding2Image,
+  ),
+  OnboardingModel(
+    title: 'onboarding.chat_offline.title'.tr(),
+    subtitle: 'onboarding.chat_offline.subtitle'.tr(),
+    imagePath: AssetsManager.onboarding3Image,
+  ),
+];

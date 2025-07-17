@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
+import 'package:magicchat/core/service/theme_service.dart';
 import 'package:magicchat/firebase_options.dart';
 import 'package:magicchat/magic_chat_app.dart';
 import 'core/routes/app_router.dart';
@@ -14,6 +15,9 @@ void main() async {
 
   await ScreenUtil.ensureScreenSize();
 
+  final themeService = ThemeService();
+  ThemeMode themeMode = await themeService.getThemeMode();
+
   final localeCode = await SharedPrefHelper.getLocale();
   final startLocale = Locale(localeCode);
 
@@ -24,7 +28,10 @@ void main() async {
       fallbackLocale: const Locale('en'),
       startLocale: startLocale,
       ignorePluralRules: false,
-      child: MagicChat(appRouter: AppRouter()),
+      child: MagicChat(
+        appRouter: AppRouter(),
+        initialThemeMode: themeMode,
+      ),
     ),
   );
 }
