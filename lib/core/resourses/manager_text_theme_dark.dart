@@ -7,27 +7,27 @@ TextTheme ManagerTextThemeDark() {
   return TextTheme(
     displayMedium: getMediumTextStyle(
       fontSize: FontSizeManager.s20,
-      color: ColorsManager.textDark,
+      color: ColorsManager.whiteInDark,
     ),
     displaySmall: getBoldTextStyle(
       fontSize: FontSizeManager.s16,
-      color: ColorsManager.textDark,
+      color: ColorsManager.whiteInDark,
     ),
     headlineMedium: getMediumTextStyle(
       fontSize: FontSizeManager.s16,
-      color: ColorsManager.textDark,
+      color: ColorsManager.whiteInDark,
     ),
     headlineSmall: getRegularTextStyle(
       fontSize: FontSizeManager.s16,
-      color: ColorsManager.textDark,
+      color: ColorsManager.whiteInDark,
     ),
     titleMedium: getMediumTextStyle(
       fontSize: FontSizeManager.s14,
-      color: ColorsManager.textDark,
+      color: ColorsManager.whiteInDark,
     ),
     bodyLarge: getRegularTextStyle(
       fontSize: FontSizeManager.s16,
-      color: ColorsManager.textDark,
+      color: ColorsManager.whiteInDark,
     ),
   );
 }

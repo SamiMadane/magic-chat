@@ -1,11 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:magicchat/core/helpers/extensions.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
+import 'package:magicchat/core/routes/routes.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_cubit.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_state.dart';
+
 class OnboardingButtons extends StatelessWidget {
   final PageController controller;
 
@@ -39,7 +42,7 @@ class OnboardingButtons extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (state.isLastPage) {
-                  // context.pushReplacementNamed(Routes.userSelectionScreen);
+                  context.pushReplacementNamed(Routes.homeScreen);
                 } else {
                   context.read<OnboardingCubit>().nextPage();
                   controller.nextPage(
