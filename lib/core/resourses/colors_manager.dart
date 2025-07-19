@@ -16,6 +16,8 @@ class ColorsManager {
   static const Color white = Colors.white;
   static const Color black = Colors.black;
   static const Color gray = Color(0xFF9E9E9E);
+  static const Color moreGray = Color(0xFF757575);
+
 
   // 🌞 Light Theme
   static const Color backgroundLight = Color(0xFFF9F9FB);
@@ -26,7 +28,7 @@ class ColorsManager {
   // 🌚 Dark Theme
   static const Color backgroundDark = Color(0xFF222222);
   static const Color cardDark = Color(0xFF1E1E1E);
-  static const Color textDark = Color(0xFFE0E0E0);
+  static const Color whiteInDark = Color(0xFFE0E0E0);
   static const Color subTextDark = Color(0xFFBDBDBD);
 
   // 🎯 Status Colors (optional use)

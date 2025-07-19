@@ -12,5 +12,11 @@
       "title": "Talk Offline",
       "subtitle": "Enjoy chatting even without an internet connection — anytime, anywhere."
     }
+  },
+  "home": {
+    "app_title": "Magic Chat",
+    "friends": "Friends",
+    "ai_chat": "AI Chat",
+    "chatbot": "ChatBot"
   }
 }

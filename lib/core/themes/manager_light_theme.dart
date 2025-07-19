@@ -5,22 +5,25 @@ import 'package:magicchat/core/resourses/manager_text_theme_light.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
 
 ThemeData managerLightThemeData() {
+  final colorScheme = ColorScheme.fromSeed(
+  seedColor: ColorsManager.primaryColor,
+  surface: ColorsManager.backgroundLight,
+  onSurfaceVariant: ColorsManager.moreGray,
+  brightness: Brightness.light,
+);
   return ThemeData.from(
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: ColorsManager.primaryColor,
-      brightness: Brightness.light,
-    ),
+    colorScheme: colorScheme,
+    
     textTheme: ManagerTextThemeLight(),
   ).copyWith(
     scaffoldBackgroundColor: ColorsManager.backgroundLight,
     appBarTheme: AppBarTheme(
-      centerTitle: true,
-      backgroundColor: ColorsManager.white,
-      foregroundColor: ColorsManager.primaryColor,
+      backgroundColor: ColorsManager.backgroundLight,
+      foregroundColor: colorScheme.primary,
       elevation: 0,
       titleTextStyle: getBoldTextStyle(
         fontSize: FontSizeManager.s16,
-        color: ColorsManager.primaryColor,
+        color: colorScheme.primary,
       ),
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
