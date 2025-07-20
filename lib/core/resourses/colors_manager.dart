@@ -15,6 +15,7 @@ class ColorsManager {
   // ⚪ Neutral Colors
   static const Color white = Colors.white;
   static const Color black = Colors.black;
+  static const Color red = Colors.red;
   static const Color gray = Color(0xFF9E9E9E);
   static const Color moreGray = Color(0xFF757575);
 

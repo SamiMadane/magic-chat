@@ -50,6 +50,7 @@ class WidthManager {
   static double w49 = SizeUtil.setWidth(49.0);
   static double w50 = SizeUtil.setWidth(50.0);
   static double w60 = SizeUtil.setWidth(60.0);
+  static double w70 = SizeUtil.setWidth(70.0);
   static double w68 = SizeUtil.setWidth(68.0);
   static double w76 = SizeUtil.setWidth(76.0);
   static double w80 = SizeUtil.setWidth(80.0);

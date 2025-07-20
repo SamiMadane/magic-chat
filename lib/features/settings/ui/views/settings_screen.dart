@@ -8,8 +8,6 @@ import 'package:magicchat/features/settings/ui/widgets/profile_section.dart';
 import 'package:magicchat/features/settings/ui/widgets/settings_group.dart';
 import 'package:magicchat/features/settings/ui/widgets/theme_setting_tile.dart';
 
-
-
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -28,6 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final _ = context.locale;
     return Scaffold(
       appBar: AppBar(
         title: Text('settings.title'.tr()),
