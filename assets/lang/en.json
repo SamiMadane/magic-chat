@@ -11,12 +11,30 @@
     "chat_offline": {
       "title": "Talk Offline",
       "subtitle": "Enjoy chatting even without an internet connection — anytime, anywhere."
-    }
+    },
+    "back": "Back",
+    "next": "Next",
+    "get_started": "Get Started"
   },
   "home": {
     "app_title": "Magic Chat",
     "friends": "Friends",
     "ai_chat": "AI Chat",
     "chatbot": "ChatBot"
+  },
+  "settings": {
+    "title": "Settings",
+    "theme_mode": "Theme Mode",
+    "language": "Language",
+    "logout": "Log Out",
+    "profile": "View Profile",
+    "login": "Login",
+    "general": "General",
+    "account": "Account",
+    "theme": {
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    }
   }
 }
