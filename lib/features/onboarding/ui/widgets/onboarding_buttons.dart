@@ -32,7 +32,7 @@ class OnboardingButtons extends StatelessWidget {
                 );
               },
               child: Text(
-                'Back'.tr(),
+                'onboarding.back'.tr(),
                 style: getSemiBoldTextStyle(
                   fontSize: FontSizeManager.s16,
                   color: colorScheme.primary, // بدل الثابت
@@ -62,7 +62,7 @@ class OnboardingButtons extends StatelessWidget {
                 ),
               ),
               child: Text(
-                state.isLastPage ? 'Get Started'.tr() : 'Next'.tr(),
+                state.isLastPage ? 'onboarding.get_started'.tr() : 'onboarding.next'.tr(),
                 style: getSemiBoldTextStyle(
                   fontSize: FontSizeManager.s16,
                   color: colorScheme.onPrimary, // بدل الأبيض الثابت

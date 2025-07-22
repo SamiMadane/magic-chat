@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:magicchat/core/helpers/extensions.dart';
+import 'package:magicchat/core/routes/routes.dart';
 import 'package:magicchat/features/ai/ui/views/ai_screen.dart';
 import 'package:magicchat/features/chatbot/ui/views/chatbot_screen.dart';
 import 'package:magicchat/features/friends/ui/views/friends_screen.dart';
@@ -32,7 +34,7 @@ class HomeScreen extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.settings),
                   onPressed: () {
-                    // Navigate to settings screen
+                    context.pushNamed(Routes.settingsScreen);
                   },
                 ),
               ],
