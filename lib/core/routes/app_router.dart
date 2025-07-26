@@ -43,7 +43,7 @@ class AppRouter {
           builder: (context) => MultiBlocProvider(
             providers: [
               BlocProvider.value(
-                value: getIt<SettingsCubit>(),
+                value: getIt<SettingsCubit>()..loadSettings(),
               ),
               BlocProvider.value(
                 value: getIt<AuthCubit>(), // توفّر AuthCubit هنا

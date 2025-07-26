@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:magicchat/core/resourses/colors_manager.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/manager_text_theme_light.dart';
+import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
 
 ThemeData managerLightThemeData() {
@@ -16,7 +17,18 @@ ThemeData managerLightThemeData() {
     
     textTheme: ManagerTextThemeLight(),
   ).copyWith(
-    scaffoldBackgroundColor: ColorsManager.backgroundLight,
+  scaffoldBackgroundColor: ColorsManager.backgroundLight,
+  cardColor: ColorsManager.cardLight,
+  cardTheme: CardThemeData(
+    color: ColorsManager.cardLight,
+    
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(RadiusManager.r12),
+      // لا حاجة لإضافة border في light
+    ),
+    elevation: 3,
+    shadowColor: ColorsManager.shadowColorLight,
+  ),
     appBarTheme: AppBarTheme(
       backgroundColor: ColorsManager.backgroundLight,
       foregroundColor: colorScheme.primary,

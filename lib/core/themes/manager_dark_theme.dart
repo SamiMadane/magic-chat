@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magicchat/core/resourses/colors_manager.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
+import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
 import 'package:magicchat/core/resourses/manager_text_theme_dark.dart';
 
@@ -16,6 +17,16 @@ ThemeData managerDarkThemeData() {
     textTheme: ManagerTextThemeDark(),
   ).copyWith(
     scaffoldBackgroundColor: ColorsManager.backgroundDark,
+    cardColor: ColorsManager.cardDark,
+    cardTheme: CardThemeData(
+      color: ColorsManager.cardDark,
+      elevation: 3,
+      shadowColor: ColorsManager.shadowColorDark,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(RadiusManager.r12),
+        side: BorderSide(color: ColorsManager.moreGray.withOpacity(0.15)),
+      ),
+    ),
     appBarTheme: AppBarTheme(
       elevation: 0,
       backgroundColor: ColorsManager.backgroundDark,
