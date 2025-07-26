@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:magicchat/core/resourses/colors_manager.dart';
+import 'package:magicchat/core/resourses/custom_shadows.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/manager_text_theme_light.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
@@ -29,6 +30,17 @@ ThemeData managerLightThemeData() {
     elevation: 3,
     shadowColor: ColorsManager.shadowColorLight,
   ),
+  extensions: <ThemeExtension<dynamic>>[
+      CustomShadows(
+        bottomNavShadow: [
+          BoxShadow(
+            color: ColorsManager.shadowColorLight,
+            blurRadius: 10,
+            offset: Offset(0, -2),
+          ),
+        ],
+      ),
+    ],
     appBarTheme: AppBarTheme(
       backgroundColor: ColorsManager.backgroundLight,
       foregroundColor: colorScheme.primary,

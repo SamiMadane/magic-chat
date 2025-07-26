@@ -36,5 +36,11 @@
       "dark": "Dark",
       "system": "System"
     }
+  },
+  "errors": {
+    "user_not_found": "User not found",
+    "user_data_empty": "User data is empty",
+    "user_fetch_error": "An error occurred while fetching user data",
+    "unexpected": "Something went wrong, please try again"
   }
 }

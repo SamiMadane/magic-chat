@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:magicchat/core/resourses/custom_shadows.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
@@ -18,6 +19,8 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final shadows = Theme.of(context).extension<CustomShadows>();
+
     final items = [
       {'icon': Icons.people, 'label': 'home.friends'.tr()},
       {'icon': Icons.smart_toy, 'label': 'home.ai_chat'.tr()},
@@ -28,13 +31,7 @@ class CustomBottomNavBar extends StatelessWidget {
       height: showLabels ? HeightManager.h80 : HeightManager.h60,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.surface,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 12,
-            offset: Offset(0, -3),
-          ),
-        ],
+        boxShadow: shadows?.bottomNavShadow ?? [],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
