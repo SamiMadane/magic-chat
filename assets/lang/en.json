@@ -41,6 +41,8 @@
     "user_not_found": "User not found",
     "user_data_empty": "User data is empty",
     "user_fetch_error": "An error occurred while fetching user data",
+    "user_already_exists": "This phone number is already in use.",
+        "invalid_otp": "Invalid OTP",
     "unexpected": "Something went wrong, please try again"
   }
 }
