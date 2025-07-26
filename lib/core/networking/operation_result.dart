@@ -7,5 +7,3 @@ abstract class OperationResult<T> with _$OperationResult<T> {
   const factory OperationResult.failure(String error) = Failure<T>;
 }
  
- // This Class is used to represent the result of an operation. It can either be a success or a failure.
- // same api_result class but with a different name.

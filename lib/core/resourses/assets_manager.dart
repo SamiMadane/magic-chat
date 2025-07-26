@@ -10,7 +10,8 @@ class AssetsManager {
   static const String onboarding2Image = '$imagesPath/onboarding2.png';
   static const String onboarding3Image = '$imagesPath/onboarding3.png';
 
-
+  // icons
+  static const String appIcon = '$iconsPath/app_icon.png';
 
 
 }

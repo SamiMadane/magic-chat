@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:magicchat/core/helpers/extensions.dart';
+import 'package:magicchat/core/routes/routes.dart';
+import 'package:magicchat/features/auth/logic/cubit/auth_cubit.dart';
+import 'package:magicchat/features/home/data/model/user_model.dart';
 import 'package:magicchat/features/settings/logic/cubit/settings_cubit.dart';
 import 'package:magicchat/features/settings/logic/cubit/settings_state.dart';
 import 'package:magicchat/features/settings/ui/widgets/language_setting_tile.dart';
@@ -9,18 +13,26 @@ import 'package:magicchat/features/settings/ui/widgets/settings_group.dart';
 import 'package:magicchat/features/settings/ui/widgets/theme_setting_tile.dart';
 
 class SettingsScreen extends StatefulWidget {
-  const SettingsScreen({super.key});
+  final bool isLoggedIn;
+  final UserModel? user;
+
+  const SettingsScreen({
+    super.key,
+    required this.isLoggedIn,
+    required this.user,
+  });
 
   @override
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
-  bool isLoggedIn = true; // Replace with actual login check later
+  late final bool isLoggedIn;
 
   @override
   void initState() {
     super.initState();
+    isLoggedIn = widget.isLoggedIn;
     context.read<SettingsCubit>().loadSettings();
   }
 
@@ -45,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             return ListView(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
               children: [
-                ProfileSection(isLoggedIn: isLoggedIn),
+                ProfileSection(isLoggedIn: isLoggedIn, user: widget.user),
                 const SizedBox(height: 30),
                 SettingsGroup(
                   title: 'settings.general'.tr(),
@@ -62,7 +74,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         leading: const Icon(Icons.logout),
                         title: Text('settings.logout'.tr()),
                         onTap: () {
-                          // handle logout
+                          context.read<AuthCubit>().logout().then((_) {
+                            context.pushReplacementNamed(
+                              Routes.homeScreen,
+                            );
+                          });
                         },
                       ),
                     ],

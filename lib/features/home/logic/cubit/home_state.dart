@@ -1,15 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'home_state.freezed.dart';
+import 'package:magicchat/features/home/data/model/user_model.dart';
 
+part 'home_state.freezed.dart';
 @freezed
 class HomeState with _$HomeState {
-  const factory HomeState({
+  const factory HomeState.initial() = HomeInitial;
+
+  const factory HomeState.loading() = HomeLoading;
+
+  const factory HomeState.loaded({
+    UserModel? user,              // يمكن null لو مش مسجل دخول
+    required bool isLoggedIn,     // يوضح حالة تسجيل الدخول
     required int currentIndex,
     required List<int> navigationStack,
-  }) = _HomeState;
+  }) = HomeLoaded;
 
-  factory HomeState.initial() => const HomeState(
-        currentIndex: 0,
-        navigationStack: [0],
-      );
+  const factory HomeState.error(String message) = HomeError;
 }
+

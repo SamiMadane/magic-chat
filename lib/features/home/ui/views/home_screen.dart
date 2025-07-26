@@ -13,40 +13,56 @@ import '../widgets/custom_bottom_nav_bar.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
-  final List<Widget> _tabs = const [
-    FriendsScreen(),
-    AiScreen(),
-    ChatbotScreen(),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final _ = context.locale;
+
     return BlocBuilder<HomeCubit, HomeState>(
       builder: (context, state) {
         final cubit = context.read<HomeCubit>();
-    
-        return WillPopScope(
-          onWillPop: cubit.onWillPop,
-          child: Scaffold(
-            appBar: AppBar(
-              title:  Text('home.app_title'.tr()),
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () {
-                    context.pushNamed(Routes.settingsScreen);
-                  },
+
+        return state.when(
+          initial: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: CircularProgressIndicator()),
+          loaded: (user, isLoggedIn, currentIndex, navigationStack) {
+            final tabs = [
+              FriendsScreen(isLoggedIn: isLoggedIn, user: user),
+              const AiScreen(),
+              const ChatbotScreen(),
+            ];
+            return WillPopScope(
+              onWillPop: cubit.onWillPop,
+              child: Scaffold(
+                appBar: AppBar(
+                  title: Text('home.app_title'.tr()),
+                  actions: [
+                    IconButton(
+                      icon: const Icon(Icons.settings),
+                      onPressed: () {
+                        context.pushNamed(
+                          Routes.settingsScreen,
+                          arguments: {
+                            'isLoggedIn': isLoggedIn,
+                            'user': user,
+                          },
+                        );
+                      },
+                    ),
+                  ],
                 ),
-              ],
-            ),
-            body: IndexedStack(
-              index: state.currentIndex,
-              children: _tabs,
-            ),
-            bottomNavigationBar: CustomBottomNavBar(
-              currentIndex: state.currentIndex,
-              onTap: cubit.onTabTapped,
-            ),
+                body: IndexedStack(
+                  index: currentIndex,
+                  children: tabs,
+                ),
+                bottomNavigationBar: CustomBottomNavBar(
+                  currentIndex: currentIndex,
+                  onTap: cubit.onTabTapped,
+                ),
+              ),
+            );
+          },
+          error: (message) => Scaffold(
+            body: Center(child: Text('Error: $message')),
           ),
         );
       },
