@@ -6,7 +6,7 @@ import 'package:magicchat/features/auth/logic/cubit/auth_cubit.dart';
 import 'package:magicchat/features/auth/ui/views/otp_verification_screen.dart';
 import 'package:magicchat/features/auth/ui/views/phone_input_screen.dart';
 import 'package:magicchat/features/auth/ui/views/username_setup_screen.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 import 'package:magicchat/features/home/logic/cubit/home_cubit.dart';
 import 'package:magicchat/features/home/ui/views/home_screen.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_cubit.dart';

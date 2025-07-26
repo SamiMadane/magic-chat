@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magicchat/core/helpers/extensions.dart';
 import 'package:magicchat/core/routes/routes.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 class FriendsScreen extends StatelessWidget {
   final bool isLoggedIn;
   final UserModel? user;

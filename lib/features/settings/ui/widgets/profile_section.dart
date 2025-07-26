@@ -5,7 +5,7 @@ import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
 import 'package:magicchat/core/routes/routes.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 
 class ProfileSection extends StatelessWidget {
   final bool isLoggedIn;

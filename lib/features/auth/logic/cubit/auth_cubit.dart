@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
 import 'package:magicchat/features/auth/data/repo/auth_repo.dart';
 import 'package:magicchat/features/auth/logic/cubit/auth_state.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository authRepository;

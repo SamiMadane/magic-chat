@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:http/http.dart' as http;
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
 import 'package:magicchat/core/networking/operation_result.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 
 class AuthRepository {
   final FirebaseFirestore firestore;

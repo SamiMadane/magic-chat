@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:magicchat/core/helpers/extensions.dart';
 import 'package:magicchat/core/routes/routes.dart';
 import 'package:magicchat/features/auth/logic/cubit/auth_cubit.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 import 'package:magicchat/features/settings/logic/cubit/settings_cubit.dart';
 import 'package:magicchat/features/settings/logic/cubit/settings_state.dart';
 import 'package:magicchat/features/settings/ui/widgets/language_setting_tile.dart';
