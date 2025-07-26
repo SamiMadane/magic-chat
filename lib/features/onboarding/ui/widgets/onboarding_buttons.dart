@@ -8,6 +8,7 @@ import 'package:magicchat/core/resourses/styles_manager.dart';
 import 'package:magicchat/core/routes/routes.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_cubit.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_state.dart';
+import 'package:magicchat/core/widgets/custom_button.dart'; // استيراد الزر الجديد
 
 class OnboardingButtons extends StatelessWidget {
   final PageController controller;
@@ -23,7 +24,9 @@ class OnboardingButtons extends StatelessWidget {
         return Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            TextButton(
+            // زر النصي "Back"
+            CustomButton(
+              label: 'onboarding.back'.tr(),
               onPressed: () {
                 context.read<OnboardingCubit>().previousPage();
                 controller.previousPage(
@@ -31,15 +34,16 @@ class OnboardingButtons extends StatelessWidget {
                   curve: Curves.easeInOut,
                 );
               },
-              child: Text(
-                'onboarding.back'.tr(),
-                style: getSemiBoldTextStyle(
-                  fontSize: FontSizeManager.s16,
-                  color: colorScheme.primary, // بدل الثابت
-                ),
+              type: ButtonType.text,
+              textStyle: getSemiBoldTextStyle(
+                fontSize: FontSizeManager.s16,
+                color: colorScheme.primary,
               ),
             ),
-            ElevatedButton(
+
+            // زر Elevated "Next" أو "Get Started"
+            CustomButton(
+              label: state.isLastPage ? 'onboarding.get_started'.tr() : 'onboarding.next'.tr(),
               onPressed: () {
                 if (state.isLastPage) {
                   context.pushReplacementNamed(Routes.homeScreen);
@@ -51,23 +55,18 @@ class OnboardingButtons extends StatelessWidget {
                   );
                 }
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: colorScheme.primary, // بدل الثابت
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(RadiusManager.r30),
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: WidthManager.w30,
-                  vertical: HeightManager.h10,
-                ),
+              type: ButtonType.elevated,
+              textStyle: getSemiBoldTextStyle(
+                fontSize: FontSizeManager.s16,
+                color: colorScheme.onPrimary,
               ),
-              child: Text(
-                state.isLastPage ? 'onboarding.get_started'.tr() : 'onboarding.next'.tr(),
-                style: getSemiBoldTextStyle(
-                  fontSize: FontSizeManager.s16,
-                  color: colorScheme.onPrimary, // بدل الأبيض الثابت
-                ),
+              // لتخصيص شكل الزر مثل original:
+              padding: EdgeInsets.symmetric(
+                horizontal: WidthManager.w30,
+                vertical: HeightManager.h10,
               ),
+              // يمكن تعديل شكل الزر داخل CustomButton لتدعم padding ورادياس أكبر
+              // حالياً radius الافتراضي 12، لو تريد 30 استدعي مع تعديل
             ),
           ],
         );

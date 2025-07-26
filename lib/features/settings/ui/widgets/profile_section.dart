@@ -6,6 +6,7 @@ import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
 import 'package:magicchat/core/routes/routes.dart';
 import 'package:magicchat/core/models/user/user_model.dart';
+import 'package:magicchat/core/widgets/custom_button.dart';
 
 class ProfileSection extends StatelessWidget {
   final bool isLoggedIn;
@@ -17,7 +18,8 @@ class ProfileSection extends StatelessWidget {
     this.user,
   });
 
-  static const String defaultImage = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+  static const String defaultImage =
+      'https://cdn-icons-png.flaticon.com/512/149/149071.png';
 
   String get _profileImageUrl {
     if (isLoggedIn && user?.imageUrl?.isNotEmpty == true) {
@@ -54,22 +56,22 @@ class ProfileSection extends StatelessWidget {
             ),
           ),
         SizedBox(height: HeightManager.h12),
-        OutlinedButton.icon(
+        CustomButton(
+          type: ButtonType.outlined,
+          icon: isLoggedIn ? Icons.person : Icons.login,
+          label: isLoggedIn ? 'settings.profile'.tr() : 'settings.login'.tr(),
           onPressed: () {
             context.pushNamed(
               isLoggedIn ? Routes.settingsScreen : Routes.phoneInputScreen,
-              arguments: isLoggedIn ? {'isLoggedIn': isLoggedIn, 'user': user} : null,
+              arguments:
+                  isLoggedIn ? {'isLoggedIn': isLoggedIn, 'user': user} : null,
             );
           },
-          icon: Icon(isLoggedIn ? Icons.person : Icons.login),
-          label: Text(
-            isLoggedIn ? 'settings.profile'.tr() : 'settings.login'.tr(),
-            style: getMediumTextStyle(
-              fontSize: FontSizeManager.s13,
-              color: theme.colorScheme.primary,
-            ),
+          textStyle: getMediumTextStyle(
+            fontSize: FontSizeManager.s13,
+            color: Theme.of(context).colorScheme.primary,
           ),
-        ),
+        )
       ],
     );
   }

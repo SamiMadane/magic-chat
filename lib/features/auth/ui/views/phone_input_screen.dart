@@ -7,6 +7,7 @@ import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
 import 'package:magicchat/core/routes/routes.dart';
+import 'package:magicchat/core/widgets/custom_button.dart';
 import 'package:magicchat/features/auth/logic/cubit/auth_cubit.dart';
 import 'package:magicchat/features/auth/logic/cubit/auth_state.dart';
 
@@ -116,37 +117,31 @@ class _PhoneInputScreenState extends State<PhoneInputScreen> {
                 ),
                 SizedBox(height: HeightManager.h30),
                 SizedBox(
-                  width: double.infinity,
-                  height: 50,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      final isValid = _formKey.currentState!.validate();
-                      if (!isValid) {
-                        setState(() {
-                          _autoValidate = true;
-                        });
-                        return;
-                      }
+                    width: double.infinity,
+                    height: 50,
+                    child: CustomButton(
+                      label: 'Send OTP',
+                      onPressed: () {
+                        final isValid = _formKey.currentState!.validate();
+                        if (!isValid) {
+                          setState(() {
+                            _autoValidate = true;
+                          });
+                          return;
+                        }
 
-                      final fullPhoneNumber = '$countryCode$phoneNumber';
-                      final authCubit = context.read<AuthCubit>();
-                      authCubit.setPhoneNumber(fullPhoneNumber);
-                      authCubit.sendOtp();
-                    },
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    child: Text(
-                      'Send OTP',
-                      style: TextStyle(
+                        final fullPhoneNumber = '$countryCode$phoneNumber';
+                        final authCubit = context.read<AuthCubit>();
+                        authCubit.setPhoneNumber(fullPhoneNumber);
+                        authCubit.sendOtp();
+                      },
+                      type: ButtonType.elevated,
+                      textStyle: TextStyle(
                         fontSize: FontSizeManager.s18,
                         fontWeight: FontWeight.bold,
                       ),
-                    ),
-                  ),
-                ),
+                      // لو حابب تضيف padding أو borderRadius خاص، ممكن تعدل الـ CustomButton لقبولها
+                    )),
                 SizedBox(height: HeightManager.h20),
                 BlocBuilder<AuthCubit, AuthState>(
                   builder: (context, state) {
