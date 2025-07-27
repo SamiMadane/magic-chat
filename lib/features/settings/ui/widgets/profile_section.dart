@@ -40,7 +40,7 @@ class ProfileSection extends StatelessWidget {
         ),
         SizedBox(height: HeightManager.h12),
         Text(
-          isLoggedIn ? user!.username : 'Guest',
+          isLoggedIn ? user!.username : 'settings.guest'.tr(),
           style: getSemiBoldTextStyle(
             fontSize: FontSizeManager.s15,
             color: theme.colorScheme.onSurface,
