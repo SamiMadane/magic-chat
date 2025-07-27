@@ -20,7 +20,10 @@
     "app_title": "Magic Chat",
     "friends": "Friends",
     "ai_chat": "AI Chat",
-    "chatbot": "ChatBot"
+    "chatbot": "ChatBot",
+    "error_title": "Error Occurred",
+    "retry_button": "Retry",
+    "logout_button": "Log Out"
   },
   "settings": {
     "title": "Settings",
@@ -31,10 +34,51 @@
     "login": "Login",
     "general": "General",
     "account": "Account",
+    "guest": "Guest",
     "theme": {
       "light": "Light",
       "dark": "Dark",
       "system": "System"
     }
+  },
+  "auth": {
+    "enter_phone": "Enter your phone number",
+    "error_title_already_logged_in": "Phone already in use",
+    "error_msg_already_logged_in": "This number is already linked to an active account. Please log out first.",
+    "otp_verification_title": "Verify OTP",
+    "otp_auto_verify_note": "Code will be verified automatically after entry.",
+    "your_verification_code_is": "Your verification code is",
+    "error_incorrect_otp": "Incorrect OTP code",
+    "logo_header": {
+      "phone_input_title": "Welcome to MagicChat",
+      "phone_input_subtitle": "Enter your phone number to continue",
+      "otp_title": "Verify Your Number",
+      "otp_subtitle": "We’ve sent a 6-digit code to your phone"
+    },
+    "phone_input": {
+      "label_phone_number": "Phone Number",
+      "button_send_otp": "Send OTP",
+      "validation_enter_phone": "Please enter your phone number"
+    },
+    "user_name": {
+      "set_up_profile": "Set Up Profile",
+      "choose_profile_picture_optional": "Choose a profile picture (optional)",
+      "username_instructions_description": "Please choose a username that others will see.",
+      "username_instructions": "Enter your username",
+      "username_validation_error": "Please enter a valid username",
+      "label_username": "Username",
+      "username_required": "Please enter a username.",
+      "username_too_short": "Username must be at least {0} characters long.",
+      "username_invalid": "Username can only contain Arabic or English letters and spaces.",
+      "finish_setup": "Finish Setup"
+    }
+  },
+  "errors": {
+    "user_not_found": "User not found",
+    "user_data_empty": "User data is empty",
+    "user_fetch_error": "An error occurred while fetching user data",
+    "user_already_exists": "This phone number is already in use.",
+    "invalid_otp": "Invalid OTP",
+    "unexpected": "Something went wrong, please try again"
   }
 }

@@ -13,5 +13,10 @@ class AssetsManager {
   // icons
   static const String appIcon = '$iconsPath/app_icon.png';
 
+  // lottie
+  static const String successLottie = '$lottiePath/success.json';
+  static const String errorLottie = '$lottiePath/error.json';
+  static const String warningLottie = '$lottiePath/warning.json';
+
 
 }

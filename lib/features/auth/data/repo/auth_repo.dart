@@ -1,27 +1,46 @@
-// 📁 auth_repository.dart
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
 import 'package:magicchat/core/networking/operation_result.dart';
-import 'package:magicchat/features/home/data/model/user_model.dart';
+import 'package:magicchat/core/models/user/user_model.dart';
 
 class AuthRepository {
   final FirebaseFirestore firestore;
 
   AuthRepository({required this.firestore});
 
-  Future<UserModel?> getUserIfExists(String phoneNumber) async {
-    final doc = await firestore.collection("users").doc(phoneNumber).get();
-    if (!doc.exists) return null;
-    return UserModel.fromJson(doc.data()!);
+  Future<OperationResult<UserModel?>> getUserIfExists(String phoneNumber) async {
+    try {
+      final doc = await firestore.collection("users").doc(phoneNumber).get();
+
+      if (!doc.exists) {
+        return OperationResult.success(null);
+      }
+
+      final data = doc.data();
+      if (data == null) {
+        return OperationResult.failure("errors.user_data_empty".tr());
+      }
+
+      final user = UserModel.fromJson(data);
+      return OperationResult.success(user);
+    } catch (e) {
+      return OperationResult.failure("errors.user_fetch_error".tr());
+    }
   }
 
-  Future<void> markUserAsLoggedIn(String phoneNumber) async {
-    await firestore.collection("users").doc(phoneNumber).update({
-      "isLoggedIn": true,
-    });
+  Future<OperationResult<void>> markUserAsLoggedIn(String phoneNumber) async {
+    try {
+      await firestore.collection("users").doc(phoneNumber).update({
+        "isLoggedIn": true,
+      });
+      return const OperationResult.success(null);
+    } catch (e) {
+      return OperationResult.failure("errors.unexpected".tr());
+    }
   }
 
   Future<OperationResult<UserModel>> saveUserToFirestore({
@@ -32,7 +51,8 @@ class AuthRepository {
     try {
       final doc = await firestore.collection("users").doc(phoneNumber).get();
       if (doc.exists) {
-        return const OperationResult.failure("هذا الرقم مستخدم بالفعل.");
+        return OperationResult.failure("errors.user_already_exists"
+            .tr()); // اضف المفتاح الجديد في ملف اللغات
       }
 
       String imageUrl = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
@@ -48,12 +68,11 @@ class AuthRepository {
       );
 
       await firestore.collection("users").doc(phoneNumber).set(user.toJson());
-
       await SharedPrefHelper.setData('user_phone', phoneNumber);
 
       return OperationResult.success(user);
     } catch (e) {
-      return OperationResult.failure("خطأ أثناء حفظ البيانات: $e");
+      return OperationResult.failure("errors.unexpected".tr());
     }
   }
 
@@ -85,23 +104,39 @@ class AuthRepository {
     }
   }
 
-  Future<bool> checkIfUserLoggedIn() async {
-    final cachedPhone = await SharedPrefHelper.getString('user_phone');
-
-    final doc = await firestore.collection("users").doc(cachedPhone).get();
-    return doc.exists && doc.data()?['isLoggedIn'] == true;
-  }
-
-  Future<void> logout() async {
+  Future<OperationResult<bool>> checkIfUserLoggedIn() async {
     try {
       final cachedPhone = await SharedPrefHelper.getString('user_phone');
-      print('Logging out user: $cachedPhone');
+      if (cachedPhone.isEmpty) {
+        return const OperationResult.success(false);
+      }
+
+      final doc = await firestore.collection("users").doc(cachedPhone).get();
+      if (!doc.exists) {
+        return const OperationResult.success(false);
+      }
+
+      final isLoggedIn = doc.data()?['isLoggedIn'] == true;
+      return OperationResult.success(isLoggedIn);
+    } catch (e) {
+      return OperationResult.failure("errors.unexpected".tr());
+    }
+  }
+
+  Future<OperationResult<void>> logout() async {
+    try {
+      final cachedPhone = await SharedPrefHelper.getString('user_phone');
+      if (cachedPhone.isEmpty) {
+        return OperationResult.failure("errors.user_not_found".tr());
+      }
+
       await firestore.collection("users").doc(cachedPhone).update({
         "isLoggedIn": false,
       });
+
+      return const OperationResult.success(null);
     } catch (e) {
-      print('Error updating Firestore: $e');
-      rethrow;
+      return OperationResult.failure("errors.unexpected".tr());
     }
   }
 }

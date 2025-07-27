@@ -17,10 +17,13 @@
     "get_started": "ابدأ الآن"
   },
   "home": {
-    "app_title": "الدردشة السحرية",
+    "app_title": "ماجيك شات",
     "friends": "الأصدقاء",
     "ai_chat": "دردشة الذكاء الاصطناعي",
-    "chat": "دردشة الروبوت"
+    "chat": "دردشة الروبوت",
+    "error_title": "حدث خطأ",
+    "retry_button": "إعادة المحاولة",
+    "logout_button": "تسجيل الخروج"
   },
   "settings": {
     "title": "الإعدادات",
@@ -29,6 +32,7 @@
     "logout": "تسجيل الخروج",
     "profile": "الملف الشخصي",
     "login": "تسجيل الدخول",
+    "guest": "ضيف",
     "general": "عام",
     "account": "الحساب",
     "theme": {
@@ -36,5 +40,45 @@
       "dark": "داكن",
       "system": "النظام"
     }
+  },
+  "auth": {
+    "enter_phone": "أدخل رقم هاتفك",
+    "error_title_already_logged_in": "رقم مستخدم بالفعل",
+    "error_msg_already_logged_in": "هذا الرقم مرتبط بحساب نشط، يرجى تسجيل الخروج أولاً.",
+    "otp_verification_title": "تحقق من OTP",
+    "otp_auto_verify_note": "سيتم التحقق من الرمز تلقائيًا بعد الإدخال.",
+    "your_verification_code_is": "رمز التحقق الخاص بك هو",
+    "error_incorrect_otp": "رمز التحقق غير صحيح",
+    "logo_header": {
+      "phone_input_title": "مرحبًا بك في ماجيك شات",
+      "phone_input_subtitle": "أدخل رقم هاتفك للمتابعة",
+      "otp_title": "تحقق من رقمك",
+      "otp_subtitle": "لقد أرسلنا رمزًا مكونًا من 6 أرقام إلى هاتفك"
+    },
+    "phone_input": {
+      "label_phone_number": "رقم الهاتف",
+      "button_send_otp": "إرسال رمز التحقق",
+      "validation_enter_phone": "يرجى إدخال رقم هاتفك"
+    },
+    "user_name": {
+      "set_up_profile": "إعداد الملف الشخصي",
+      "choose_profile_picture_optional": "اختر صورة ملف شخصي (اختياري)",
+      "username_instructions_description": "يرجى اختيار اسم مستخدم سيراه الآخرون",
+      "username_instructions": "أدخل اسم المستخدم الخاص بك",
+      "username_validation_error": "يرجى إدخال اسم مستخدم صالح",
+      "label_username": "الاسم",
+      "username_required": "يرجى إدخال الاسم.",
+      "username_too_short": "يجب أن لا يقل الاسم عن {0} أحرف.",
+      "username_invalid": "يمكن أن يحتوي الاسم فقط على حروف عربية أو إنجليزية ومسافات.",
+      "finish_setup": "إنهاء الإعداد"
+    }
+  },
+  "errors": {
+    "user_not_found": "المستخدم غير موجود",
+    "user_data_empty": "بيانات المستخدم فارغة",
+    "user_fetch_error": "حدث خطأ أثناء جلب بيانات المستخدم",
+    "user_already_exists": "هذا الرقم مستخدم بالفعل.",
+    "invalid_otp": "رمز التحقق غير صحيح",
+    "unexpected": "حدث خطأ غير متوقع، يرجى المحاولة مرة أخرى"
   }
 }

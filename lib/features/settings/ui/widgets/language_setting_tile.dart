@@ -24,8 +24,8 @@ class LanguageSettingTile extends StatelessWidget {
           dropdownStyleData: DropdownStyleData(
             width: WidthManager.w100,
           ),
-          decoration: const InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 8),
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(horizontal: WidthManager.w8),
             border: InputBorder.none,
           ),
           items: const [
