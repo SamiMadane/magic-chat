@@ -42,4 +42,8 @@ class AppRegex {
   static bool isBirthDateValid(String birthDate) {
     return RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(birthDate);
   }
+  static bool isUsernameValid(String username) {
+  return RegExp(r'^[\u0621-\u064Aa-zA-Z\s]{3,}$').hasMatch(username.trim());
+}
+
 }

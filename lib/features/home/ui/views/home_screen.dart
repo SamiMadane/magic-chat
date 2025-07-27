@@ -8,6 +8,7 @@ import 'package:magicchat/features/chatbot/ui/views/chatbot_screen.dart';
 import 'package:magicchat/features/friends/ui/views/friends_screen.dart';
 import 'package:magicchat/features/home/logic/cubit/home_cubit.dart';
 import 'package:magicchat/features/home/logic/cubit/home_state.dart';
+import 'package:magicchat/features/home/ui/widgets/error_screen.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -61,8 +62,9 @@ class HomeScreen extends StatelessWidget {
               ),
             );
           },
-          error: (message) => Scaffold(
-            body: Center(child: Text('Error: $message')),
+          error: (message) => ErrorScreen(
+            message: message,
+            onRetry: () => context.read<HomeCubit>().checkUserLoginStatus(),
           ),
         );
       },

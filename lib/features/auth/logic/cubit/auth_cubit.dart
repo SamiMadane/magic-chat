@@ -59,7 +59,8 @@ class AuthCubit extends Cubit<AuthState> {
       }
 
       if (_user != null && !_user!.isLoggedIn) {
-        final markResult = await authRepository.markUserAsLoggedIn(_phoneNumber!);
+        final markResult =
+            await authRepository.markUserAsLoggedIn(_phoneNumber!);
         markResult.when(
           success: (_) async {
             await SharedPrefHelper.setData('user_phone', _phoneNumber!);
@@ -74,7 +75,8 @@ class AuthCubit extends Cubit<AuthState> {
 
       emit(const AuthState.awaitingProfileInfo());
     } else {
-      emit(const AuthState.verificationFailed(errorMessage: "errors.invalid_otp"));
+      emit(const AuthState.verificationFailed(
+          errorMessage: "errors.invalid_otp"));
     }
   }
 

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
 import 'package:magicchat/core/networking/operation_result.dart';
@@ -11,23 +12,23 @@ class AuthRepository {
 
   AuthRepository({required this.firestore});
 
-  Future<OperationResult<UserModel>> getUserIfExists(String phoneNumber) async {
+  Future<OperationResult<UserModel?>> getUserIfExists(String phoneNumber) async {
     try {
       final doc = await firestore.collection("users").doc(phoneNumber).get();
 
       if (!doc.exists) {
-        return const OperationResult.failure("errors.user_not_found");
+        return OperationResult.success(null);
       }
 
       final data = doc.data();
       if (data == null) {
-        return const OperationResult.failure("errors.user_data_empty");
+        return OperationResult.failure("errors.user_data_empty".tr());
       }
 
       final user = UserModel.fromJson(data);
       return OperationResult.success(user);
     } catch (e) {
-      return const OperationResult.failure("errors.user_fetch_error");
+      return OperationResult.failure("errors.user_fetch_error".tr());
     }
   }
 
@@ -38,7 +39,7 @@ class AuthRepository {
       });
       return const OperationResult.success(null);
     } catch (e) {
-      return const OperationResult.failure("errors.unexpected");
+      return OperationResult.failure("errors.unexpected".tr());
     }
   }
 
@@ -50,7 +51,8 @@ class AuthRepository {
     try {
       final doc = await firestore.collection("users").doc(phoneNumber).get();
       if (doc.exists) {
-        return const OperationResult.failure("errors.user_already_exists"); // اضف المفتاح الجديد في ملف اللغات
+        return OperationResult.failure("errors.user_already_exists"
+            .tr()); // اضف المفتاح الجديد في ملف اللغات
       }
 
       String imageUrl = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
@@ -70,7 +72,7 @@ class AuthRepository {
 
       return OperationResult.success(user);
     } catch (e) {
-      return OperationResult.failure("errors.unexpected");
+      return OperationResult.failure("errors.unexpected".tr());
     }
   }
 
@@ -117,7 +119,7 @@ class AuthRepository {
       final isLoggedIn = doc.data()?['isLoggedIn'] == true;
       return OperationResult.success(isLoggedIn);
     } catch (e) {
-      return const OperationResult.failure("errors.unexpected");
+      return OperationResult.failure("errors.unexpected".tr());
     }
   }
 
@@ -125,7 +127,7 @@ class AuthRepository {
     try {
       final cachedPhone = await SharedPrefHelper.getString('user_phone');
       if (cachedPhone.isEmpty) {
-        return const OperationResult.failure("errors.user_not_found");
+        return OperationResult.failure("errors.user_not_found".tr());
       }
 
       await firestore.collection("users").doc(cachedPhone).update({
@@ -134,7 +136,7 @@ class AuthRepository {
 
       return const OperationResult.success(null);
     } catch (e) {
-      return const OperationResult.failure("errors.unexpected");
+      return OperationResult.failure("errors.unexpected".tr());
     }
   }
 }
