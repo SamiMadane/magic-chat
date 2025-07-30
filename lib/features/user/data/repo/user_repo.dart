@@ -16,6 +16,7 @@ class UserRepository {
   Stream<OperationResult<UserModel>> getUserDataByPhone() async* {
     try {
       final phone = await SharedPrefHelper.getString('user_phone');
+      // ignore: unnecessary_null_comparison
       if (phone == null || phone.isEmpty) {
         yield OperationResult.failure("errors.phone_not_found".tr());
         return;
