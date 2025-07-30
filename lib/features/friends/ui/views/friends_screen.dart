@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:magicchat/core/helpers/extensions.dart';
-import 'package:magicchat/core/routes/routes.dart';
+
+import 'package:magicchat/features/friends/ui/widgets/guest_view.dart';
+import 'package:magicchat/features/friends/ui/widgets/logged_in_view.dart';
 import 'package:magicchat/features/user/data/model/user_model.dart';
+
 class FriendsScreen extends StatelessWidget {
   final bool isLoggedIn;
   final UserModel? user;
@@ -14,17 +16,15 @@ class FriendsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Text('Logged in: $isLoggedIn, Name: ${user?.username ?? "Guest"}'),
-             ElevatedButton(onPressed: (){
-              context.pushNamed(Routes.phoneInputScreen);
-            }, child: Text( 'Login'))
-          ],
-        ),
-      ),
+      body: isLoggedIn
+          ? LoggedInView(
+              colorScheme: colorScheme,
+              user: user,
+            )
+          : GuestView(colorScheme: colorScheme),
     );
   }
 }

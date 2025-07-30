@@ -79,6 +79,11 @@
     "phone_number": "Phone Number",
     "save_changes": "Save Changes"
   },
+    "guest": {
+    "lockTitle": "Chat with Friends",
+    "lockSubtitle": "To access this feature and start chatting with your contacts, please log in first.",
+    "loginButton": "Login"
+  },
   "errors": {
     "user_not_found": "User not found",
     "user_data_empty": "User data is empty",
