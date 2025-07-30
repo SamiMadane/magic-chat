@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magicchat/core/resourses/colors_manager.dart';
 import 'package:magicchat/core/resourses/custom_shadows.dart';
+import 'package:magicchat/core/resourses/custom_shimmer_theme.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/manager_text_theme_light.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
@@ -38,6 +39,8 @@ ThemeData managerLightThemeData() {
           ),
         ],
       ),
+      CustomShimmerTheme(baseColor: ColorsManager.baseShimmerColorLight, highlightColor: Colors.white),
+
     ],
     appBarTheme: AppBarTheme(
       backgroundColor: ColorsManager.backgroundLight,

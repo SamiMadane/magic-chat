@@ -6,7 +6,9 @@ import 'package:magicchat/features/auth/logic/cubit/auth_cubit.dart';
 import 'package:magicchat/features/auth/ui/views/otp_verification_screen.dart';
 import 'package:magicchat/features/auth/ui/views/phone_input_screen.dart';
 import 'package:magicchat/features/auth/ui/views/username_setup_screen.dart';
-import 'package:magicchat/core/models/user/user_model.dart';
+import 'package:magicchat/features/edit_profile/logic/cubit/edit_profile_cubit.dart';
+import 'package:magicchat/features/edit_profile/ui/views/edit_profile_screen.dart';
+import 'package:magicchat/features/user/data/model/user_model.dart';
 import 'package:magicchat/features/home/logic/cubit/home_cubit.dart';
 import 'package:magicchat/features/home/ui/views/home_screen.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_cubit.dart';
@@ -38,7 +40,6 @@ class AppRouter {
       case Routes.settingsScreen:
         final args = arguments as Map?;
         final isLoggedIn = args?['isLoggedIn'] as bool? ?? false;
-        final user = args?['user'] as UserModel?;
         return MaterialPageRoute(
           builder: (context) => MultiBlocProvider(
             providers: [
@@ -51,7 +52,6 @@ class AppRouter {
             ],
             child: SettingsScreen(
               isLoggedIn: isLoggedIn,
-              user: user,
             ),
           ),
         );
@@ -83,6 +83,14 @@ class AppRouter {
           builder: (_) => BlocProvider.value(
             value: getIt<AuthCubit>(),
             child: const UsernameSetupScreen(),
+          ),
+        );
+
+        case Routes.editProfileScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<EditProfileCubit>()..loadUser(),
+            child: const EditProfileScreen(),
           ),
         );
 

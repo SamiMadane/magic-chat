@@ -44,7 +44,6 @@ class HomeScreen extends StatelessWidget {
                           Routes.settingsScreen,
                           arguments: {
                             'isLoggedIn': isLoggedIn,
-                            'user': user,
                           },
                         );
                       },

@@ -31,7 +31,7 @@ void main() async {
       startLocale: startLocale,
       ignorePluralRules: false,
       child: BlocProvider(
-        create: (context) => getIt<SettingsCubit>()..loadSettings()..loadSettings(),
+        create: (context) => getIt<SettingsCubit>()..loadAll(),
         child: MagicChat(
           appRouter: AppRouter(),
         ),

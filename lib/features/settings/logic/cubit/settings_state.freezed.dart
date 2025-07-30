@@ -19,50 +19,51 @@ mixin _$SettingsState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() settingsLoading,
-    required TResult Function(String theme, String locale) settingsSuccess,
-    required TResult Function(String error) settingsError,
+    required TResult Function() loading,
+    required TResult Function(UserModel? user, String theme, String locale)
+        success,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? settingsLoading,
-    TResult? Function(String theme, String locale)? settingsSuccess,
-    TResult? Function(String error)? settingsError,
+    TResult? Function()? loading,
+    TResult? Function(UserModel? user, String theme, String locale)? success,
+    TResult? Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? settingsLoading,
-    TResult Function(String theme, String locale)? settingsSuccess,
-    TResult Function(String error)? settingsError,
+    TResult Function()? loading,
+    TResult Function(UserModel? user, String theme, String locale)? success,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SettingsInitial value) initial,
-    required TResult Function(SettingsLoading value) settingsLoading,
-    required TResult Function(SettingsSuccess value) settingsSuccess,
-    required TResult Function(SettingsError value) settingsError,
+    required TResult Function(SettingsLoading value) loading,
+    required TResult Function(SettingsSuccess value) success,
+    required TResult Function(SettingsError value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SettingsInitial value)? initial,
-    TResult? Function(SettingsLoading value)? settingsLoading,
-    TResult? Function(SettingsSuccess value)? settingsSuccess,
-    TResult? Function(SettingsError value)? settingsError,
+    TResult? Function(SettingsLoading value)? loading,
+    TResult? Function(SettingsSuccess value)? success,
+    TResult? Function(SettingsError value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SettingsInitial value)? initial,
-    TResult Function(SettingsLoading value)? settingsLoading,
-    TResult Function(SettingsSuccess value)? settingsSuccess,
-    TResult Function(SettingsError value)? settingsError,
+    TResult Function(SettingsLoading value)? loading,
+    TResult Function(SettingsSuccess value)? success,
+    TResult Function(SettingsError value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -131,9 +132,10 @@ class _$SettingsInitialImpl implements _SettingsInitial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() settingsLoading,
-    required TResult Function(String theme, String locale) settingsSuccess,
-    required TResult Function(String error) settingsError,
+    required TResult Function() loading,
+    required TResult Function(UserModel? user, String theme, String locale)
+        success,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -142,9 +144,9 @@ class _$SettingsInitialImpl implements _SettingsInitial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? settingsLoading,
-    TResult? Function(String theme, String locale)? settingsSuccess,
-    TResult? Function(String error)? settingsError,
+    TResult? Function()? loading,
+    TResult? Function(UserModel? user, String theme, String locale)? success,
+    TResult? Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -153,9 +155,9 @@ class _$SettingsInitialImpl implements _SettingsInitial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? settingsLoading,
-    TResult Function(String theme, String locale)? settingsSuccess,
-    TResult Function(String error)? settingsError,
+    TResult Function()? loading,
+    TResult Function(UserModel? user, String theme, String locale)? success,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -168,9 +170,9 @@ class _$SettingsInitialImpl implements _SettingsInitial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SettingsInitial value) initial,
-    required TResult Function(SettingsLoading value) settingsLoading,
-    required TResult Function(SettingsSuccess value) settingsSuccess,
-    required TResult Function(SettingsError value) settingsError,
+    required TResult Function(SettingsLoading value) loading,
+    required TResult Function(SettingsSuccess value) success,
+    required TResult Function(SettingsError value) error,
   }) {
     return initial(this);
   }
@@ -179,9 +181,9 @@ class _$SettingsInitialImpl implements _SettingsInitial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SettingsInitial value)? initial,
-    TResult? Function(SettingsLoading value)? settingsLoading,
-    TResult? Function(SettingsSuccess value)? settingsSuccess,
-    TResult? Function(SettingsError value)? settingsError,
+    TResult? Function(SettingsLoading value)? loading,
+    TResult? Function(SettingsSuccess value)? success,
+    TResult? Function(SettingsError value)? error,
   }) {
     return initial?.call(this);
   }
@@ -190,9 +192,9 @@ class _$SettingsInitialImpl implements _SettingsInitial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SettingsInitial value)? initial,
-    TResult Function(SettingsLoading value)? settingsLoading,
-    TResult Function(SettingsSuccess value)? settingsSuccess,
-    TResult Function(SettingsError value)? settingsError,
+    TResult Function(SettingsLoading value)? loading,
+    TResult Function(SettingsSuccess value)? success,
+    TResult Function(SettingsError value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -232,7 +234,7 @@ class _$SettingsLoadingImpl implements SettingsLoading {
 
   @override
   String toString() {
-    return 'SettingsState.settingsLoading()';
+    return 'SettingsState.loading()';
   }
 
   @override
@@ -248,35 +250,36 @@ class _$SettingsLoadingImpl implements SettingsLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() settingsLoading,
-    required TResult Function(String theme, String locale) settingsSuccess,
-    required TResult Function(String error) settingsError,
+    required TResult Function() loading,
+    required TResult Function(UserModel? user, String theme, String locale)
+        success,
+    required TResult Function(String error) error,
   }) {
-    return settingsLoading();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? settingsLoading,
-    TResult? Function(String theme, String locale)? settingsSuccess,
-    TResult? Function(String error)? settingsError,
+    TResult? Function()? loading,
+    TResult? Function(UserModel? user, String theme, String locale)? success,
+    TResult? Function(String error)? error,
   }) {
-    return settingsLoading?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? settingsLoading,
-    TResult Function(String theme, String locale)? settingsSuccess,
-    TResult Function(String error)? settingsError,
+    TResult Function()? loading,
+    TResult Function(UserModel? user, String theme, String locale)? success,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (settingsLoading != null) {
-      return settingsLoading();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -285,35 +288,35 @@ class _$SettingsLoadingImpl implements SettingsLoading {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SettingsInitial value) initial,
-    required TResult Function(SettingsLoading value) settingsLoading,
-    required TResult Function(SettingsSuccess value) settingsSuccess,
-    required TResult Function(SettingsError value) settingsError,
+    required TResult Function(SettingsLoading value) loading,
+    required TResult Function(SettingsSuccess value) success,
+    required TResult Function(SettingsError value) error,
   }) {
-    return settingsLoading(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SettingsInitial value)? initial,
-    TResult? Function(SettingsLoading value)? settingsLoading,
-    TResult? Function(SettingsSuccess value)? settingsSuccess,
-    TResult? Function(SettingsError value)? settingsError,
+    TResult? Function(SettingsLoading value)? loading,
+    TResult? Function(SettingsSuccess value)? success,
+    TResult? Function(SettingsError value)? error,
   }) {
-    return settingsLoading?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SettingsInitial value)? initial,
-    TResult Function(SettingsLoading value)? settingsLoading,
-    TResult Function(SettingsSuccess value)? settingsSuccess,
-    TResult Function(SettingsError value)? settingsError,
+    TResult Function(SettingsLoading value)? loading,
+    TResult Function(SettingsSuccess value)? success,
+    TResult Function(SettingsError value)? error,
     required TResult orElse(),
   }) {
-    if (settingsLoading != null) {
-      return settingsLoading(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
@@ -329,7 +332,7 @@ abstract class _$$SettingsSuccessImplCopyWith<$Res> {
           $Res Function(_$SettingsSuccessImpl) then) =
       __$$SettingsSuccessImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String theme, String locale});
+  $Res call({UserModel? user, String theme, String locale});
 }
 
 /// @nodoc
@@ -345,10 +348,15 @@ class __$$SettingsSuccessImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? user = freezed,
     Object? theme = null,
     Object? locale = null,
   }) {
     return _then(_$SettingsSuccessImpl(
+      user: freezed == user
+          ? _value.user
+          : user // ignore: cast_nullable_to_non_nullable
+              as UserModel?,
       theme: null == theme
           ? _value.theme
           : theme // ignore: cast_nullable_to_non_nullable
@@ -364,8 +372,11 @@ class __$$SettingsSuccessImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SettingsSuccessImpl implements SettingsSuccess {
-  const _$SettingsSuccessImpl({required this.theme, required this.locale});
+  const _$SettingsSuccessImpl(
+      {required this.user, required this.theme, required this.locale});
 
+  @override
+  final UserModel? user;
   @override
   final String theme;
   @override
@@ -373,7 +384,7 @@ class _$SettingsSuccessImpl implements SettingsSuccess {
 
   @override
   String toString() {
-    return 'SettingsState.settingsSuccess(theme: $theme, locale: $locale)';
+    return 'SettingsState.success(user: $user, theme: $theme, locale: $locale)';
   }
 
   @override
@@ -381,12 +392,13 @@ class _$SettingsSuccessImpl implements SettingsSuccess {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SettingsSuccessImpl &&
+            (identical(other.user, user) || other.user == user) &&
             (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.locale, locale) || other.locale == locale));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, theme, locale);
+  int get hashCode => Object.hash(runtimeType, user, theme, locale);
 
   /// Create a copy of SettingsState
   /// with the given fields replaced by the non-null parameter values.
@@ -401,35 +413,36 @@ class _$SettingsSuccessImpl implements SettingsSuccess {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() settingsLoading,
-    required TResult Function(String theme, String locale) settingsSuccess,
-    required TResult Function(String error) settingsError,
+    required TResult Function() loading,
+    required TResult Function(UserModel? user, String theme, String locale)
+        success,
+    required TResult Function(String error) error,
   }) {
-    return settingsSuccess(theme, locale);
+    return success(user, theme, locale);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? settingsLoading,
-    TResult? Function(String theme, String locale)? settingsSuccess,
-    TResult? Function(String error)? settingsError,
+    TResult? Function()? loading,
+    TResult? Function(UserModel? user, String theme, String locale)? success,
+    TResult? Function(String error)? error,
   }) {
-    return settingsSuccess?.call(theme, locale);
+    return success?.call(user, theme, locale);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? settingsLoading,
-    TResult Function(String theme, String locale)? settingsSuccess,
-    TResult Function(String error)? settingsError,
+    TResult Function()? loading,
+    TResult Function(UserModel? user, String theme, String locale)? success,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (settingsSuccess != null) {
-      return settingsSuccess(theme, locale);
+    if (success != null) {
+      return success(user, theme, locale);
     }
     return orElse();
   }
@@ -438,35 +451,35 @@ class _$SettingsSuccessImpl implements SettingsSuccess {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SettingsInitial value) initial,
-    required TResult Function(SettingsLoading value) settingsLoading,
-    required TResult Function(SettingsSuccess value) settingsSuccess,
-    required TResult Function(SettingsError value) settingsError,
+    required TResult Function(SettingsLoading value) loading,
+    required TResult Function(SettingsSuccess value) success,
+    required TResult Function(SettingsError value) error,
   }) {
-    return settingsSuccess(this);
+    return success(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SettingsInitial value)? initial,
-    TResult? Function(SettingsLoading value)? settingsLoading,
-    TResult? Function(SettingsSuccess value)? settingsSuccess,
-    TResult? Function(SettingsError value)? settingsError,
+    TResult? Function(SettingsLoading value)? loading,
+    TResult? Function(SettingsSuccess value)? success,
+    TResult? Function(SettingsError value)? error,
   }) {
-    return settingsSuccess?.call(this);
+    return success?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SettingsInitial value)? initial,
-    TResult Function(SettingsLoading value)? settingsLoading,
-    TResult Function(SettingsSuccess value)? settingsSuccess,
-    TResult Function(SettingsError value)? settingsError,
+    TResult Function(SettingsLoading value)? loading,
+    TResult Function(SettingsSuccess value)? success,
+    TResult Function(SettingsError value)? error,
     required TResult orElse(),
   }) {
-    if (settingsSuccess != null) {
-      return settingsSuccess(this);
+    if (success != null) {
+      return success(this);
     }
     return orElse();
   }
@@ -474,9 +487,11 @@ class _$SettingsSuccessImpl implements SettingsSuccess {
 
 abstract class SettingsSuccess implements SettingsState {
   const factory SettingsSuccess(
-      {required final String theme,
+      {required final UserModel? user,
+      required final String theme,
       required final String locale}) = _$SettingsSuccessImpl;
 
+  UserModel? get user;
   String get theme;
   String get locale;
 
@@ -530,7 +545,7 @@ class _$SettingsErrorImpl implements SettingsError {
 
   @override
   String toString() {
-    return 'SettingsState.settingsError(error: $error)';
+    return 'SettingsState.error(error: $error)';
   }
 
   @override
@@ -556,35 +571,36 @@ class _$SettingsErrorImpl implements SettingsError {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() settingsLoading,
-    required TResult Function(String theme, String locale) settingsSuccess,
-    required TResult Function(String error) settingsError,
+    required TResult Function() loading,
+    required TResult Function(UserModel? user, String theme, String locale)
+        success,
+    required TResult Function(String error) error,
   }) {
-    return settingsError(error);
+    return error(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? settingsLoading,
-    TResult? Function(String theme, String locale)? settingsSuccess,
-    TResult? Function(String error)? settingsError,
+    TResult? Function()? loading,
+    TResult? Function(UserModel? user, String theme, String locale)? success,
+    TResult? Function(String error)? error,
   }) {
-    return settingsError?.call(error);
+    return error?.call(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? settingsLoading,
-    TResult Function(String theme, String locale)? settingsSuccess,
-    TResult Function(String error)? settingsError,
+    TResult Function()? loading,
+    TResult Function(UserModel? user, String theme, String locale)? success,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (settingsError != null) {
-      return settingsError(error);
+    if (error != null) {
+      return error(this.error);
     }
     return orElse();
   }
@@ -593,35 +609,35 @@ class _$SettingsErrorImpl implements SettingsError {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_SettingsInitial value) initial,
-    required TResult Function(SettingsLoading value) settingsLoading,
-    required TResult Function(SettingsSuccess value) settingsSuccess,
-    required TResult Function(SettingsError value) settingsError,
+    required TResult Function(SettingsLoading value) loading,
+    required TResult Function(SettingsSuccess value) success,
+    required TResult Function(SettingsError value) error,
   }) {
-    return settingsError(this);
+    return error(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_SettingsInitial value)? initial,
-    TResult? Function(SettingsLoading value)? settingsLoading,
-    TResult? Function(SettingsSuccess value)? settingsSuccess,
-    TResult? Function(SettingsError value)? settingsError,
+    TResult? Function(SettingsLoading value)? loading,
+    TResult? Function(SettingsSuccess value)? success,
+    TResult? Function(SettingsError value)? error,
   }) {
-    return settingsError?.call(this);
+    return error?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_SettingsInitial value)? initial,
-    TResult Function(SettingsLoading value)? settingsLoading,
-    TResult Function(SettingsSuccess value)? settingsSuccess,
-    TResult Function(SettingsError value)? settingsError,
+    TResult Function(SettingsLoading value)? loading,
+    TResult Function(SettingsSuccess value)? success,
+    TResult Function(SettingsError value)? error,
     required TResult orElse(),
   }) {
-    if (settingsError != null) {
-      return settingsError(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }

@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
-import 'package:magicchat/features/home/data/repo/user_repo.dart';
+import 'package:magicchat/features/user/data/repo/user_repo.dart';
 import 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
@@ -40,28 +40,33 @@ class HomeCubit extends Cubit<HomeState> {
     }
     return true;
   }
-Future<void> checkUserLoginStatus() async {
-  emit(const HomeState.loading());
 
-  try {
+  void checkUserLoginStatus() async {
+    emit(const HomeState.loading());
+
     final phone = await SharedPrefHelper.getString('user_phone');
 
     if (phone.isNotEmpty == true) {
-      final result = await userRepository.getUserData(phone);
-
-      result.when(
-        success: (userData) {
-          emit(HomeState.loaded(
-            user: userData,
-            isLoggedIn: true,
-            currentIndex: 0,
-            navigationStack: [0],
-          ));
-        },
-        failure: (errorKey) {
-          emit(HomeState.error(errorKey.tr())); // الترجمة هنا
-        },
-      );
+      try {
+        // نبدأ الاشتراك في الستريم
+        userRepository.getUserDataByPhone().listen((result) {
+          result.when(
+            success: (userData) {
+              emit(HomeState.loaded(
+                user: userData,
+                isLoggedIn: true,
+                currentIndex: 0,
+                navigationStack: [0],
+              ));
+            },
+            failure: (errorKey) {
+              emit(HomeState.error(errorKey.tr()));
+            },
+          );
+        });
+      } catch (e) {
+        emit(HomeState.error('errors.unexpected'.tr()));
+      }
     } else {
       // مستخدم لم يسجل من قبل
       emit(const HomeState.loaded(
@@ -71,9 +76,5 @@ Future<void> checkUserLoginStatus() async {
         navigationStack: [0],
       ));
     }
-  } catch (e) {
-    emit(HomeState.error('errors.unexpected'.tr()));
   }
-}
-
 }

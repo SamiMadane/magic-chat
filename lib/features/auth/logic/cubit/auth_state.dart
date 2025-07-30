@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:magicchat/core/models/user/user_model.dart';
+import 'package:magicchat/features/user/data/model/user_model.dart';
 
 part 'auth_state.freezed.dart';
 

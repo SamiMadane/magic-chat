@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:magicchat/core/models/user/user_model.dart';
 import 'package:magicchat/features/settings/logic/cubit/settings_cubit.dart';
+import 'package:magicchat/features/settings/logic/cubit/settings_state.dart';
 import 'package:magicchat/features/settings/ui/widgets/settings_body.dart';
 
 class SettingsScreen extends StatefulWidget {
   final bool isLoggedIn;
-  final UserModel? user;
 
   const SettingsScreen({
     super.key,
     required this.isLoggedIn,
-    required this.user,
   });
 
   @override
@@ -25,20 +23,35 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   void initState() {
     super.initState();
-    context.read<SettingsCubit>().loadSettings();
     isLoggedIn = widget.isLoggedIn;
+    context.read<SettingsCubit>().loadAll(); // حمل الكل معًا: ثيم، لغة، مستخدم
   }
 
   @override
   Widget build(BuildContext context) {
     final _ = context.locale;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('settings.title'.tr()),
       ),
-      body: SettingsBody(
-        isLoggedIn: isLoggedIn,
-        user: widget.user,
+      body: BlocBuilder<SettingsCubit, SettingsState>(
+        builder: (context, state) {
+          if (state is SettingsLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is SettingsError) {
+            return Center(child: Text(state.error));
+          } else if (state is SettingsSuccess) {
+            return SettingsBody(
+              isLoggedIn: isLoggedIn,
+              user: state.user,
+              theme: state.theme,
+              locale: state.locale,
+            );
+          } else {
+            return const SizedBox.shrink();
+          }
+        },
       ),
     );
   }
