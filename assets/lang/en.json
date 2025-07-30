@@ -30,7 +30,7 @@
     "theme_mode": "Theme Mode",
     "language": "Language",
     "logout": "Log Out",
-    "profile": "View Profile",
+    "edit_profile": "Edit Profile",
     "login": "Login",
     "general": "General",
     "account": "Account",
@@ -72,6 +72,12 @@
       "username_invalid": "Username can only contain Arabic or English letters and spaces.",
       "finish_setup": "Finish Setup"
     }
+  },
+ "edit_profile": {
+    "title": "Edit Profile",
+    "update_success": "Profile updated successfully",
+    "phone_number": "Phone Number",
+    "save_changes": "Save Changes"
   },
   "errors": {
     "user_not_found": "User not found",

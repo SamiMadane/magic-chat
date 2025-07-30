@@ -4,45 +4,71 @@ import 'package:flutter/material.dart';
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
 import 'package:magicchat/core/service/theme_service.dart';
 import 'package:magicchat/features/settings/logic/cubit/settings_state.dart';
-
+import 'package:magicchat/features/user/data/model/user_model.dart';
+import 'package:magicchat/features/user/data/repo/user_repo.dart';
 
 class SettingsCubit extends Cubit<SettingsState> {
   final ThemeService _themeService;
+  final UserRepository userRepository;
 
-  SettingsCubit(this._themeService) : super(SettingsState.initial());
+  SettingsCubit(this._themeService, this.userRepository) : super(const SettingsState.initial());
 
-  Future<void> loadSettings() async {
-  emit(SettingsLoading());
-  try {
-    final theme = await _themeService.getAppTheme();
-    final locale = await SharedPrefHelper.getLocale();
-    print('Loaded theme: $theme, locale: $locale');
-    emit(SettingsSuccess(theme: theme, locale: locale));
-  } catch (e) {
-    print('Error loading settings: $e');
-    emit(SettingsError('Failed to load settings'));
+  /// دالة لتحميل كل البيانات معاً (ثيم، لغة، بيانات المستخدم)
+  Future<void> loadAll() async {
+    emit(const SettingsState.loading());
+    try {
+      final theme = await _themeService.getAppTheme();
+      final locale = await SharedPrefHelper.getLocale();
+
+      // نحصل على أول نتيجة من الاستريم لبيانات المستخدم
+      final userResult = await userRepository.getUserDataByPhone().first;
+
+      UserModel? user;
+      String? error;
+
+      userResult.when(
+        success: (u) => user = u,
+        failure: (e) => error = e,
+      );
+
+      if (error != null) {
+        emit(SettingsState.error(error!));
+        return;
+      }
+
+      emit(SettingsState.success(user: user, theme: theme, locale: locale));
+    } catch (e) {
+      emit(SettingsState.error('errors.unexpected'.tr()));
+    }
   }
-}
 
- Future<void> changeTheme(String theme) async {
-  final currentState = state;
-  final currentTheme = currentState is SettingsSuccess ? currentState.theme : null;
-  
-  if (theme != currentTheme) {
+  Future<void> changeTheme(String theme) async {
+    final currentState = state;
+    if (currentState is SettingsSuccess && theme == currentState.theme) {
+      return; // لا تغيير
+    }
+
     await _themeService.setAppTheme(theme);
     final locale = await SharedPrefHelper.getLocale();
-    print('Theme changed to $theme');
-    emit(SettingsSuccess(theme: theme, locale: locale));
-  } else {
-    print('Theme did not change, skipping emit');
-  }
-}
 
+    UserModel? currentUser;
+    if (state is SettingsSuccess) {
+      currentUser = (state as SettingsSuccess).user;
+    }
+
+    emit(SettingsState.success(user: currentUser, theme: theme, locale: locale));
+  }
 
   Future<void> changeLocale(String localeCode, BuildContext context) async {
     await SharedPrefHelper.setLocale(localeCode);
     await context.setLocale(Locale(localeCode));
     final theme = await _themeService.getAppTheme();
-    emit(SettingsSuccess(theme: theme, locale: localeCode));
+
+    UserModel? currentUser;
+    if (state is SettingsSuccess) {
+      currentUser = (state as SettingsSuccess).user;
+    }
+
+    emit(SettingsState.success(user: currentUser, theme: theme, locale: localeCode));
   }
 }

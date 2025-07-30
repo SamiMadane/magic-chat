@@ -28,25 +28,27 @@ class PhoneInputScreen extends StatelessWidget {
               },
             );
           } else if (state is AlreadyLoggedIn) {
-            showDialog(
+            showAnimatedStatusDialog(
+              title: 'auth.error_title_already_logged_in'.tr(),
+              message: 'auth.error_msg_already_logged_in'.tr(),
+              onConfirm: () {
+                context.pop();
+              },
+              statusType: DialogStatusType.error,
               context: context,
-              builder: (_) => CustomStatusDialog(
-                title: 'auth.error_title_already_logged_in'.tr(),
-                message: 'auth.error_msg_already_logged_in'.tr(),
-                onConfirm: () {
-                  context.pop();
-                },
-                statusType: DialogStatusType.error,
-              ),
             );
           }
         },
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: WidthManager.w20,vertical: HeightManager.h100),
+          padding: EdgeInsets.symmetric(
+              horizontal: WidthManager.w20, vertical: HeightManager.h100),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              LogoHeader(title: 'auth.logo_header.phone_input_title'.tr(), subtitle: 'auth.logo_header.phone_input_subtitle'.tr(),),
+              LogoHeader(
+                title: 'auth.logo_header.phone_input_title'.tr(),
+                subtitle: 'auth.logo_header.phone_input_subtitle'.tr(),
+              ),
               SizedBox(height: HeightManager.h30),
               PhoneInputFormWithButton(
                 onValidSubmit: (fullPhone) {

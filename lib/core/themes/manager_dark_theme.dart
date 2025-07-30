@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:magicchat/core/resourses/colors_manager.dart';
 import 'package:magicchat/core/resourses/custom_shadows.dart';
+import 'package:magicchat/core/resourses/custom_shimmer_theme.dart';
 import 'package:magicchat/core/resourses/fonts_manager.dart';
 import 'package:magicchat/core/resourses/sizes_util_manager.dart';
 import 'package:magicchat/core/resourses/styles_manager.dart';
@@ -28,7 +29,7 @@ ThemeData managerDarkThemeData() {
         side: BorderSide(color: ColorsManager.moreGray.withOpacity(0.15)),
       ),
     ),
-     extensions: <ThemeExtension<dynamic>>[
+    extensions: <ThemeExtension<dynamic>>[
       CustomShadows(
         bottomNavShadow: [
           BoxShadow(
@@ -38,6 +39,9 @@ ThemeData managerDarkThemeData() {
           ),
         ],
       ),
+      CustomShimmerTheme(
+          baseColor: ColorsManager.baseShimmerColorDark,
+          highlightColor: Colors.white),
     ],
     appBarTheme: AppBarTheme(
       elevation: 0,

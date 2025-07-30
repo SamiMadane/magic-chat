@@ -5,14 +5,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:http/http.dart' as http;
 import 'package:magicchat/core/helpers/shared_pref_helper.dart';
 import 'package:magicchat/core/networking/operation_result.dart';
-import 'package:magicchat/core/models/user/user_model.dart';
+import 'package:magicchat/features/user/data/model/user_model.dart';
 
 class AuthRepository {
   final FirebaseFirestore firestore;
 
   AuthRepository({required this.firestore});
 
-  Future<OperationResult<UserModel?>> getUserIfExists(String phoneNumber) async {
+  Future<OperationResult<UserModel?>> getUserIfExists(
+      String phoneNumber) async {
     try {
       final doc = await firestore.collection("users").doc(phoneNumber).get();
 
@@ -27,7 +28,9 @@ class AuthRepository {
 
       final user = UserModel.fromJson(data);
       return OperationResult.success(user);
-    } catch (e) {
+    } catch (e, stack) {
+      print('Error fetching user: $e');
+      print(stack);
       return OperationResult.failure("errors.user_fetch_error".tr());
     }
   }
