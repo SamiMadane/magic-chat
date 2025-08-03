@@ -4,6 +4,8 @@ import 'package:get_it/get_it.dart';
 import 'package:magicchat/core/service/theme_service.dart';
 import 'package:magicchat/features/auth/data/repo/auth_repo.dart';
 import 'package:magicchat/features/auth/logic/cubit/auth_cubit.dart';
+import 'package:magicchat/features/friends/data/repo/friends_repo.dart';
+import 'package:magicchat/features/friends/logic/cubit/friends_cubit.dart';
 import 'package:magicchat/features/home/logic/cubit/home_cubit.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_cubit.dart';
 import 'package:magicchat/features/edit_profile/logic/cubit/edit_profile_cubit.dart';
@@ -24,7 +26,7 @@ Future<void> setupGetIt() async {
       () => HomeCubit(userRepository: getIt<UserRepository>()));
 
   getIt.registerLazySingleton<ThemeService>(() => ThemeService());
-  
+
   getIt.registerLazySingleton(
       () => SettingsCubit(getIt<ThemeService>(), getIt<UserRepository>()));
 
@@ -35,4 +37,10 @@ Future<void> setupGetIt() async {
 
   getIt.registerFactory<EditProfileCubit>(
       () => EditProfileCubit(userRepository: getIt<UserRepository>()));
+
+  getIt.registerLazySingleton<FriendsRepository>(
+      () => FriendsRepository(firestore: getIt<FirebaseFirestore>()));
+
+  getIt.registerFactory<FriendsCubit>(
+      () => FriendsCubit(getIt<FriendsRepository>()));
 }

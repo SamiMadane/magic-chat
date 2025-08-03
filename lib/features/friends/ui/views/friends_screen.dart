@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:magicchat/core/helpers/extensions.dart';
+import 'package:magicchat/core/resourses/fonts_manager.dart';
+import 'package:magicchat/core/routes/routes.dart';
 
 import 'package:magicchat/features/friends/ui/widgets/guest_view.dart';
 import 'package:magicchat/features/friends/ui/widgets/logged_in_view.dart';
@@ -22,9 +25,24 @@ class FriendsScreen extends StatelessWidget {
       body: isLoggedIn
           ? LoggedInView(
               colorScheme: colorScheme,
-              user: user,
+              friends: [],
             )
           : GuestView(colorScheme: colorScheme),
+      floatingActionButton: isLoggedIn
+          ? ClipOval(
+              child: FloatingActionButton(
+                onPressed: () {
+                  context.pushNamed(Routes.findFriendScreen);
+                },
+                backgroundColor: Theme.of(context).colorScheme.primary,
+                foregroundColor: Theme.of(context).colorScheme.onPrimary,
+                child: Icon(
+                  Icons.person_search,
+                  size: FontSizeManager.s26,
+                ),
+              ),
+            )
+          : null,
     );
   }
 }

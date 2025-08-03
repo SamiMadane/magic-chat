@@ -42,7 +42,7 @@ class GuestView extends StatelessWidget {
             ),
             SizedBox(height: HeightManager.h30),
             Text(
-              'guest.lockTitle'.tr(),
+              'friends.guest.lockTitle'.tr(),
               style: getBoldTextStyle(
                 fontSize: FontSizeManager.s22,
                 color: colorScheme.onSurface,
@@ -52,7 +52,7 @@ class GuestView extends StatelessWidget {
             ),
             SizedBox(height: HeightManager.h12),
             Text(
-              'guest.lockSubtitle'.tr(),
+              'friends.guest.lockSubtitle'.tr(),
               textAlign: TextAlign.center,
               style: getRegularTextStyle(
                 fontSize: FontSizeManager.s16,
@@ -62,7 +62,7 @@ class GuestView extends StatelessWidget {
             ),
             SizedBox(height: HeightManager.h36),
             CustomButton(
-              label:'guest.loginButton'.tr(),
+              label:'friends.guest.loginButton'.tr(),
               onPressed: () => context.pushNamed(Routes.phoneInputScreen),
               type: ButtonType.elevated,
               icon: Icons.login,

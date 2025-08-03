@@ -28,6 +28,16 @@
 		<string>LaunchScreen</string>
 		<key>UIMainStoryboardFile</key>
 		<string>Main</string>
+		
+		<key>NSContactsUsageDescription</key>
+		<string>We need access to your contacts to help you chat with your friends.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>We need access to your photo library to select a profile picture.</string>
+		<key>NSCameraUsageDescription</key>
+		<string>We need access to your camera to take a profile picture.</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>We need access to your microphone for recording audio or video.</string>
+
 		<key>UISupportedInterfaceOrientations</key>
 		<array>
 			<string>UIInterfaceOrientationPortrait</string>
@@ -47,5 +57,6 @@
 		<true/>
 		<key>UIStatusBarHidden</key>
 		<false/>
+		
 	</dict>
 </plist>

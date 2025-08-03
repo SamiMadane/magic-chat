@@ -63,6 +63,7 @@ class AuthCubit extends Cubit<AuthState> {
             await authRepository.markUserAsLoggedIn(_phoneNumber!);
         markResult.when(
           success: (_) async {
+            print('_phoneNumber is : $_phoneNumber');
             await SharedPrefHelper.setData('user_phone', _phoneNumber!);
             emit(AuthState.authenticated(user: _user!));
           },
@@ -84,12 +85,15 @@ class AuthCubit extends Cubit<AuthState> {
     required String username,
     required File? imageFile,
   }) async {
+    print('cubittttttttttttttt');
     if (_phoneNumber == null) {
+      print('cubit _phoneNumber = null :  _phoneNumber = $_phoneNumber');
+
       emit(const AuthState.authError(errorMessage: 'errors.user_not_found'));
       return;
     }
-
     emit(const AuthState.loading());
+    print('cubit _phoneNumber != null :  _phoneNumber = $_phoneNumber');
 
     final result = await authRepository.saveUserToFirestore(
       phoneNumber: _phoneNumber!,
