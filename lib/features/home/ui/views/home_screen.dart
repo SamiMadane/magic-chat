@@ -11,9 +11,14 @@ import 'package:magicchat/features/home/logic/cubit/home_state.dart';
 import 'package:magicchat/features/home/ui/widgets/error_screen.dart';
 import '../widgets/custom_bottom_nav_bar.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final _ = context.locale;
@@ -35,7 +40,9 @@ class HomeScreen extends StatelessWidget {
               onWillPop: cubit.onWillPop,
               child: Scaffold(
                 appBar: AppBar(
-                  title: Text('home.app_title'.tr()),
+                  title: Builder(
+                    builder: (context) => Text('home.app_title'.tr()),
+                  ),
                   actions: [
                     IconButton(
                       icon: const Icon(Icons.settings),

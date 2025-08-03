@@ -43,7 +43,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             return Center(child: Text(state.error));
           } else if (state is SettingsSuccess) {
             return SettingsBody(
-              isLoggedIn: isLoggedIn,
+              isLoggedIn: isLoggedIn, 
               user: state.user,
               theme: state.theme,
               locale: state.locale,

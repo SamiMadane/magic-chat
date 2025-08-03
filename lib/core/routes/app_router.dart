@@ -8,6 +8,8 @@ import 'package:magicchat/features/auth/ui/views/phone_input_screen.dart';
 import 'package:magicchat/features/auth/ui/views/username_setup_screen.dart';
 import 'package:magicchat/features/edit_profile/logic/cubit/edit_profile_cubit.dart';
 import 'package:magicchat/features/edit_profile/ui/views/edit_profile_screen.dart';
+import 'package:magicchat/features/friends/logic/cubit/friends_cubit.dart';
+import 'package:magicchat/features/friends/ui/views/find_friend_screen.dart';
 import 'package:magicchat/features/home/logic/cubit/home_cubit.dart';
 import 'package:magicchat/features/home/ui/views/home_screen.dart';
 import 'package:magicchat/features/onboarding/logic/onboarding_cubit.dart';
@@ -85,11 +87,19 @@ class AppRouter {
           ),
         );
 
-        case Routes.editProfileScreen:
+      case Routes.editProfileScreen:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
             create: (_) => getIt<EditProfileCubit>()..loadUser(),
             child: const EditProfileScreen(),
+          ),
+        );
+
+      case Routes.findFriendScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (_) => getIt<FriendsCubit>(),
+            child: const FindFriendsScreen(),
           ),
         );
 

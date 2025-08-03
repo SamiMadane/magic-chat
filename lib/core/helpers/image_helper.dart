@@ -7,11 +7,13 @@ class ImageHelper {
   static Future<File?> pickAndCropImage(
       BuildContext context, ImageSource source) async {
     final picker = ImagePicker();
+    debugPrint('Picking image...');
+
     final pickedFile = await picker.pickImage(source: source);
 
     if (pickedFile == null) return null;
-
-    final croppedFile = await ImageCropper().cropImage(
+    debugPrint('Cropping image...');
+    final CroppedFile? croppedFile = await ImageCropper().cropImage(
       sourcePath: pickedFile.path,
       uiSettings: [
         AndroidUiSettings(
@@ -19,6 +21,7 @@ class ImageHelper {
           toolbarColor: Colors.black,
           toolbarWidgetColor: Colors.white,
           statusBarColor: Colors.black,
+
           activeControlsWidgetColor: Colors.deepPurple,
           lockAspectRatio: false,
           aspectRatioPresets: [
@@ -39,10 +42,19 @@ class ImageHelper {
             CropAspectRatioPreset.ratio16x9,
           ],
         ),
+        WebUiSettings(
+          context: context,
+          presentStyle: WebPresentStyle.dialog,
+          size: const CropperSize(width: 520, height: 520),
+        ),
       ],
     );
 
-    if (croppedFile == null) return null;
+    if (croppedFile == null) {
+      debugPrint('Cropping cancelled.');
+      return null;
+    }
+    debugPrint('Image cropped at path: ${croppedFile.path}');
 
     return File(croppedFile.path);
   }

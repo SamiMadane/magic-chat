@@ -33,17 +33,24 @@ class _UsernameSetupScreenState extends State<UsernameSetupScreen> {
   }
 
   Future<void> _pickImage() async {
-final image = await ImageHelper.pickAndCropImage(context, ImageSource.gallery);
+    final image =
+        await ImageHelper.pickAndCropImage(context, ImageSource.gallery);
     if (image != null) {
       setState(() => _selectedImage = image);
     }
   }
 
   void _submit() {
+    print(
+        ' username is :${_usernameController.text.trim()} image file is :$_selectedImage ');
+    print('befoar validation');
     if (!_formKey.currentState!.validate()) {
+      print('during validation');
+
       setState(() => _autoValidate = true);
       return;
     }
+    print('after validation');
 
     context.read<AuthCubit>().completeSignup(
           username: _usernameController.text.trim(),
@@ -74,29 +81,38 @@ final image = await ImageHelper.pickAndCropImage(context, ImageSource.gallery);
           return SingleChildScrollView(
             padding: EdgeInsets.symmetric(
                 horizontal: WidthManager.w20, vertical: HeightManager.h100),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                CommonProfileImagePicker(
-                  image: _selectedImage,
-                  onTap: _pickImage,
-                ),
-                SizedBox(height: HeightManager.h16),
-                Text(
-                  'auth.user_name.choose_profile_picture_optional'.tr(),
-                  style: TextStyle(color: Colors.grey),
-                ),
-                SizedBox(height: HeightManager.h30),
-                const UsernameInstructions(),
-                SizedBox(height: HeightManager.h30),
-                UsernameTextField(
-                  controller: _usernameController,
-                  autoValidate: _autoValidate,
-                ),
-                SizedBox(height: HeightManager.h30),
-                PrimaryButton(onPressed: _submit,label: 'auth.user_name.finish_setup'.tr(),),
-                SizedBox(height: HeightManager.h20),
-              ],
+            child: Form(
+              key: _formKey, // ✅ ربط الـ formKey
+              autovalidateMode: _autoValidate
+                  ? AutovalidateMode.always
+                  : AutovalidateMode.disabled,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  CommonProfileImagePicker(
+                    image: _selectedImage,
+                    onTap: _pickImage,
+                  ),
+                  SizedBox(height: HeightManager.h16),
+                  Text(
+                    'auth.user_name.choose_profile_picture_optional'.tr(),
+                    style: TextStyle(color: Colors.grey),
+                  ),
+                  SizedBox(height: HeightManager.h30),
+                  const UsernameInstructions(),
+                  SizedBox(height: HeightManager.h30),
+                  UsernameTextField(
+                    controller: _usernameController,
+                    autoValidate: _autoValidate,
+                  ),
+                  SizedBox(height: HeightManager.h30),
+                  PrimaryButton(
+                    onPressed: _submit,
+                    label: 'auth.user_name.finish_setup'.tr(),
+                  ),
+                  SizedBox(height: HeightManager.h20),
+                ],
+              ),
             ),
           );
         },

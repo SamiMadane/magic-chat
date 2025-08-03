@@ -58,7 +58,7 @@ class UserRepository {
 
       final dataToUpdate = {
         'username': newName,
-        if (imageUrl != null) 'image': imageUrl,
+        if (imageUrl != null) 'imageUrl': imageUrl,
       };
 
       await firestore.collection('users').doc(phone).update(dataToUpdate);

@@ -19,6 +19,10 @@ class AppRegex {
     return RegExp(r'^(059|056)[0-9]{7}$').hasMatch(phoneNumber);
   }
 
+ static bool isPhoneNumberDigitsOnly(String phoneNumber) {
+  return RegExp(r'^\+?\d{6,15}$').hasMatch(phoneNumber);
+}
+
   static bool hasUpperCase(String password) {
     return RegExp(r'^(?=.*[A-Z])').hasMatch(password);
   }
@@ -42,8 +46,8 @@ class AppRegex {
   static bool isBirthDateValid(String birthDate) {
     return RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(birthDate);
   }
-  static bool isUsernameValid(String username) {
-  return RegExp(r'^[\u0621-\u064Aa-zA-Z\s]{3,}$').hasMatch(username.trim());
-}
 
+  static bool isUsernameValid(String username) {
+    return RegExp(r'^[\u0621-\u064Aa-zA-Z\s]{3,}$').hasMatch(username.trim());
+  }
 }

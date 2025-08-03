@@ -6,4 +6,5 @@ class Routes {
    static const String otpVerificationScreen = '/otpVerificationScreen';
    static const String usernameSetupScreen = '/usernameSetupScreen';
    static const String editProfileScreen = '/editProfileScreen';
+   static const String findFriendScreen = '/findFriendScreen';
 }

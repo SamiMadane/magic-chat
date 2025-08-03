@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:magicchat/core/resourses/custom_shimmer_theme.dart';
@@ -7,6 +8,7 @@ import 'package:shimmer/shimmer.dart';
 class CommonProfileImagePicker extends StatelessWidget {
   final File? image;
   final String? imageUrl;
+  final String? username;
   final VoidCallback onTap;
   final double radius;
   final Color backgroundColor;
@@ -20,6 +22,7 @@ class CommonProfileImagePicker extends StatelessWidget {
     required this.image,
     required this.onTap,
     this.imageUrl,
+    this.username,
     this.radius = 60,
     this.backgroundColor = const Color(0xFFF3E5F5),
     this.icon = Icons.camera_alt,
@@ -35,14 +38,12 @@ class CommonProfileImagePicker extends StatelessWidget {
     Widget avatar;
 
     if (image != null) {
-      // صورة من الملف (File)
       avatar = CircleAvatar(
         radius: radius,
         backgroundColor: backgroundColor,
         backgroundImage: FileImage(image!),
       );
     } else if (imageUrl != null && imageUrl!.isNotEmpty) {
-      // صورة من الإنترنت (Cached + Shimmer)
       avatar = CircleAvatar(
         radius: radius,
         backgroundColor: backgroundColor,
@@ -53,21 +54,13 @@ class CommonProfileImagePicker extends StatelessWidget {
             height: radius * 2,
             fit: BoxFit.cover,
             placeholder: (context, url) => _buildShimmer(context),
-            errorWidget: (context, url, error) => Icon(
-              icon,
-              size: iconSize,
-              color: iconColor,
-            ),
+            errorWidget: (context, url, error) =>
+                _buildFallbackAvatar(username),
           ),
         ),
       );
     } else {
-      // لا صورة، عرض أيقونة فقط
-      avatar = CircleAvatar(
-        radius: radius,
-        backgroundColor: backgroundColor,
-        child: Icon(icon, size: iconSize, color: iconColor),
-      );
+      avatar = _buildFallbackAvatar(username);
     }
 
     if (editIconOnlyTap) {
@@ -111,7 +104,6 @@ class CommonProfileImagePicker extends StatelessWidget {
 
   Widget _buildShimmer(BuildContext context) {
     final shimmerTheme = Theme.of(context).extension<CustomShimmerTheme>()!;
-
     return Shimmer.fromColors(
       baseColor: shimmerTheme.baseColor,
       highlightColor: shimmerTheme.highlightColor,
@@ -119,6 +111,42 @@ class CommonProfileImagePicker extends StatelessWidget {
         radius: radius,
         backgroundColor: shimmerTheme.baseColor,
       ),
+    );
+  }
+
+  Widget _buildFallbackAvatar(String? username) {
+     final color = username == null
+      ? const Color(0xFF9E9E9E) // لون ثابت للكاميرا
+      : _getRandomColor(username);
+
+    return CircleAvatar(
+      radius: radius,
+      backgroundColor: color,
+      child: username == null
+          ? Icon(
+              Icons.camera_alt,
+              size: radius * 0.7,
+              color: Colors.white,
+            )
+          : Text(
+              username.trim()[0].toUpperCase(),
+              style: TextStyle(
+                fontSize: radius * 0.7,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+    );
+  }
+
+  Color _getRandomColor(String input) {
+    final hash = input.hashCode;
+    final rng = Random(hash);
+    return Color.fromARGB(
+      255,
+      100 + rng.nextInt(155),
+      100 + rng.nextInt(155),
+      100 + rng.nextInt(155),
     );
   }
 }

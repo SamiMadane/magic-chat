@@ -114,6 +114,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                 children: [
                   CommonProfileImagePicker(
                     image: _pickedImage,
+                    username: user.username,
                     imageUrl: user.imageUrl,
                     onTap: _pickImage,
                     editIconOnlyTap: true,

@@ -11,16 +11,25 @@ class SettingsCubit extends Cubit<SettingsState> {
   final ThemeService _themeService;
   final UserRepository userRepository;
 
-  SettingsCubit(this._themeService, this.userRepository) : super(const SettingsState.initial());
+  SettingsCubit(this._themeService, this.userRepository)
+      : super(const SettingsState.initial());
 
   /// دالة لتحميل كل البيانات معاً (ثيم، لغة، بيانات المستخدم)
   Future<void> loadAll() async {
     emit(const SettingsState.loading());
+
     try {
       final theme = await _themeService.getAppTheme();
       final locale = await SharedPrefHelper.getLocale();
 
-      // نحصل على أول نتيجة من الاستريم لبيانات المستخدم
+      // تحقق أولًا إذا كان هناك رقم محفوظ، إذا لا، نعتبره Guest
+      final phone = await SharedPrefHelper.getString('user_phone');
+      // ignore: unnecessary_null_comparison
+      if (phone.isEmpty || phone == null) {
+        emit(SettingsState.success(user: null, theme: theme, locale: locale));
+        return;
+      }
+
       final userResult = await userRepository.getUserDataByPhone().first;
 
       UserModel? user;
@@ -56,7 +65,8 @@ class SettingsCubit extends Cubit<SettingsState> {
       currentUser = (state as SettingsSuccess).user;
     }
 
-    emit(SettingsState.success(user: currentUser, theme: theme, locale: locale));
+    emit(
+        SettingsState.success(user: currentUser, theme: theme, locale: locale));
   }
 
   Future<void> changeLocale(String localeCode, BuildContext context) async {
@@ -69,6 +79,7 @@ class SettingsCubit extends Cubit<SettingsState> {
       currentUser = (state as SettingsSuccess).user;
     }
 
-    emit(SettingsState.success(user: currentUser, theme: theme, locale: localeCode));
+    emit(SettingsState.success(
+        user: currentUser, theme: theme, locale: localeCode));
   }
 }

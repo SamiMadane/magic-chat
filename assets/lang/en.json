@@ -73,11 +73,37 @@
       "finish_setup": "Finish Setup"
     }
   },
- "edit_profile": {
+  "edit_profile": {
     "title": "Edit Profile",
     "update_success": "Profile updated successfully",
     "phone_number": "Phone Number",
     "save_changes": "Save Changes"
+  },
+  "friends": {
+    "chat": "Chat",
+    "invite": "Invite",
+    "invite_message": "Hey! Try the amazing Magic Chat app for communication. Download it now from: https://magicchat.app",
+    "guest": {
+      "lockTitle": "Chat with Friends",
+      "lockSubtitle": "To access this feature and start chatting with your contacts, please log in first.",
+      "loginButton": "Login"
+    },
+    "loggedInView": {
+      "no_conversations": "No conversations yet.\nStart chatting by adding friends!",
+      "tap_to_chat": "Tap to chat"
+    },
+    "findFriends": {
+      "find_friend": "Find Friend",
+      "enter_phone_number": "Enter phone number",
+      "invalid_phone_number": "Enter a valid phone number (digits only, '+' allowed at the beginning)."
+    },
+    "search": {
+      "enter_number": "Enter a number to search",
+      "no_users_found": "No users found.",
+      "unknown_user": "Unknown User",
+      "app_users": "Contacts on Magic Chat",
+      "invite_to_app": "Invite to use Magic Chat"
+    }
   },
   "errors": {
     "user_not_found": "User not found",
